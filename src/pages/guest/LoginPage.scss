@@ -1,0 +1,46 @@
+@import '/public/assets/scss/variables';
+
+.login--main{
+    margin: 50px;
+    height: 70vh;
+    @include makeCenter;
+    text-align: center;
+
+    form{
+        border: 1px solid;
+        border-radius: 20px;
+        padding : 5%;
+
+        input,Link,a{
+            display: block;
+        }
+        input:nth-child(1){
+            margin: 0 auto;
+            height: 30px;
+            font-size: 15px;
+            padding-left: 10px;
+        }
+        input:nth-child(2){
+            margin: 0 auto;
+            height: 30px;
+            font-size: 15px;
+            padding-left: 10px;
+            margin: 15px;
+        }
+        .joinsite{
+            margin-top: 50px;
+        }
+        .btn__connect{
+            @include secondarybutton($themecolorGreen, $darkerGreen);
+            margin-bottom: 15px;
+        }
+        .btn__join{
+            @include secondarybutton($themecolorYellow, $darkerYellow);
+            margin-top: 15px;
+        }
+        .loginFail{
+            font-size: 11px;
+            color: $themecolorRed;
+        }
+    }
+}

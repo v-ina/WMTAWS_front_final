@@ -1,0 +1,244 @@
+@import '/public/assets/scss/variables';
+
+// ----------------------Header - desktop
+.header--navbar{
+    @include menuPadding;
+    background-color: $bgcolor;
+    padding-top: 10px;
+    padding-bottom: 10px;
+
+    ul{
+        display: flex;
+        align-items: center;
+        gap: 40px;
+        text-align: center;
+        font-size: 14px;
+        text-wrap: nowrap;
+        
+        li:nth-child(2){
+            margin-left: auto;
+        }
+        img{
+            width: 200px;
+        }
+        li {
+            .fontawesome{
+                font-size: 20px;
+                display: block;
+                margin:  0 auto 10px auto;
+            }
+            .i__opacity{
+                opacity: 0.3;
+            }
+
+            &:hover:not(:first-child){
+                opacity: 0.3;
+            }
+        }
+    }
+}
+
+// ----------------------Header - mobile
+.overlay__blur{
+    z-index: 2;
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    left: 0;
+    top: 0;
+    background-color: rgba(89, 89, 89, 0.267);
+    backdrop-filter: blur(10px);
+    transition: all 0.1s ease-in-out;
+}
+
+.header--navbar--mobile{
+    background-color: $bgcolor;
+    padding: 10px 20px;
+    display: flex;
+    align-items: center;
+    img{
+        width: 150px;
+    }
+    .navbar--mobile__menuicon{
+        width: 40px;
+        height: 30px;
+        margin-left: auto;
+        position: relative;
+        cursor: pointer;
+
+        span{
+            display: block;
+            position: absolute;
+            width: 100%;
+            height: 5px;
+            border-radius: 30px;
+            background-color: #000;
+            transition: all 0.6s;
+            z-index: 3;
+
+            &:nth-child(1){
+                top: 0;
+            }
+            &:nth-child(2){
+                top: 50%;
+                transform: translateY(-50%);
+            }
+            &:nth-child(3){
+                bottom: 0;
+            }
+        }
+
+        .checked{
+            &:nth-child(1){
+                top: 50%;
+                transform: translateY(-50%) rotate(45deg);
+            }
+            &:nth-child(2){
+                opacity: 0;
+            }
+            &:nth-child(3){
+                top: 50%;
+                transform: translateY(-50%) rotate(-45deg);
+            }
+        }
+    }
+
+    .navbar--mobile__sidebar{
+        width: 80%;
+        height: 100%;
+        background-color: white;
+        position: fixed;
+        top: 0;
+        right: -80%;
+        opacity: 0;
+        z-index: 2;
+        transition: all 0.7s;
+
+        .user__infos{
+            padding: 10% 20%;
+            display: flex;
+            align-items: center;
+            gap: 30px;
+
+
+            .user__img{
+                height: 80px;
+                width: 80px;
+                border-radius: 100%;
+                background-color: $darkerBlue;
+                margin-left: -30px;
+            }
+            .user__name{
+                font-size: 2rem;
+                font-family: 'pacifico';
+            }
+        }
+
+        .pageshortcut{
+            padding: 20px 20%;
+            display: flex;
+            justify-content: flex-end;
+            text-align: center;
+            gap: 40px;
+            font-family: 'poiret';
+            font-weight: bold;
+            
+            li{
+                cursor: pointer;
+
+                p{
+                    margin-top: 10px;
+                }
+                .fontawesome{
+                    font-size: 40px;
+                    
+                    &:hover{
+                        opacity: 0.3;
+                    }
+                }
+            }
+        }
+        hr{
+            width: 70%;
+            margin: 30px auto;
+        }
+
+        .forumshortcut{
+            padding-left: 20%;
+            padding-right: 20%;
+            font-family: 'poiret';
+            font-weight: bold;
+
+            li{
+                margin-bottom: 30px;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                margin: 50px 0px;
+                cursor: pointer;
+                
+                &:hover{
+                    font-weight: normal;
+                }
+                a{
+                    width: 100%;
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                }
+                    
+            }
+        }
+    }
+   
+}
+
+
+// quand l'ecran est plus grand que 769px)
+@media (min-width : 769px){
+    .header--navbar{
+        display: block;
+    }
+    .overlay__blur{
+        display:none;
+    }
+    .header--navbar--mobile{
+        display: none;
+    }
+}
+
+
+// quand l'ecran est plus petit que tablette($mlarge)
+@media (max-width : $mlarge) {
+    .header--navbar{
+        display: none;
+    }
+    .overlay__blur{
+        display:block;
+    }
+    .header--navbar--mobile{
+        display: flex;
+    }
+}
+
+
+// quand l'ecran est plus petit que mobile($xsmall)
+@media (max-width : $xsmall) {
+    .header--navbar--mobile{
+        .navbar--mobile__sidebar{
+            .pageshortcut{
+                padding-right: 40px;
+                gap: 25px;
+                i{
+                    font-size: 30px;
+                }
+            }
+            .forumshortcut{
+                font-size: 13px;
+
+            }
+        }
+
+    }
+}
+

@@ -1,0 +1,56 @@
+@import '/public/assets/scss/variables';
+
+footer{
+    background-color: $bgcolor;
+    padding: 30px 0px;
+    line-height: 20px;
+    font-size: 12px;
+    @include menuPadding;
+
+    ul{
+        display: flex;
+        justify-content: space-evenly;
+
+        a:hover{
+            font-weight: bold;
+        }
+    }
+    hr{
+        margin: 20px;
+    }
+    p{
+        text-align: center;
+        a{
+            text-decoration: underline;
+            font-weight: bold;
+            
+            &:hover{
+                color: $themecolorBlue;
+            }
+        }
+    }
+}
+
+
+// quand l'ecran est plus petit que tablette($middle)
+@media (max-width : $middle) {
+    footer{
+        font-size: 10px;
+    }
+}
+
+
+// quand l'ecran est plus petit que mobile($small)
+@media (max-width : $small) {
+    footer{
+        ul{
+            li{
+                display: none;
+            }
+        }
+        hr{
+            display: none;
+        }
+    }
+    
+}

@@ -1,0 +1,34 @@
+@import '/public/assets/scss/variables';
+
+.adminheader--navbar{
+    @include menuPadding;
+    background-color: $bgcolor;
+    padding-top: 10px;
+    padding-bottom: 10px;
+
+    ul{
+        display: flex;
+        align-items: center;
+        gap: 40px;
+        text-align: center;
+        font-size: 14px;
+        text-wrap: nowrap;
+        
+        li:nth-child(2){
+            margin-left: auto;
+        }
+        img{
+            width: 200px;
+        }
+        li {
+            .fontawesome{
+                font-size: 20px;
+                display: block;
+                margin:  0 auto 10px auto;
+            }
+            .i__opacity{
+                opacity: 0.3;
+            }
+        }
+    }
+}

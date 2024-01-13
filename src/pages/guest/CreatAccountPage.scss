@@ -1,0 +1,30 @@
+@import '/public/assets/scss/variables';
+
+.creataccount--main{
+    h1{
+        text-align: center;
+        margin-top: 50px
+    }
+    form{
+        @include pagePadding;
+        input:not(:last-child){
+            width: 100%;
+            display: block;
+            margin: 0 auto;
+            height: 30px;
+            font-size: 15px;
+            padding-left: 10px;
+            margin-bottom: 30px;
+        }
+        input:last-child{
+            @include secondarybutton ($themecolorGreen,$darkerGreen);
+            display: block;
+            margin: 0 auto;
+        }
+        p.createAccound__fail{
+            font-size: 12px;
+            color: $themecolorRed;
+            margin-bottom: 5px;
+        }
+    }
+}

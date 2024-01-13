@@ -1,0 +1,106 @@
+@import '/public/assets/scss/variables';
+
+.userProfile--main{
+    @include menuPadding;
+    padding-top: 50px;
+    padding-bottom: 50px;
+    width: 80%;
+    background-color: rgb(224, 224, 224);
+    margin: 100px auto;
+    border-radius: 20px;
+
+    h2{
+        font-family: 'pacifico';
+        font-size: 40px;
+    }
+    .mypage--user__info{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 50px;
+
+        .mypage--user__content{
+            margin-top: 20px;
+        }
+        .mypage--user__img{
+            text-align: right;
+
+            .mypage--user__img__photo{
+                height: 180px;
+                width: 180px;
+                border-radius: 100%;
+                background-color: $greycolor;
+            }
+            p{
+                margin-top: 20px;
+            }
+        }
+    }
+}
+
+.userProfile--noresult{
+    @include pagePadding;
+
+    .noResult{
+        width: 100%;
+        margin-bottom: 30px;
+        hr{
+            margin: 50px 0px;
+            width: 100%;
+        }
+        p{
+            text-align: center;
+            font-weight: bold;
+            font-size: 1.8rem;
+        }
+    }
+}
+
+
+// quand l'ecran est plus petit que tablette($middle)
+@media (max-width : $middle) {
+    .userProfile--main{
+        padding-top: 0px;
+        background-color: transparent;
+        width: 90%;
+        margin: 50px auto;
+
+        .mypage--user__info{
+            flex-direction: column-reverse;
+            margin-top: 50px;
+
+            .mypage--user__content{
+                display: block;
+            }
+            .mypage--user__img{
+                display: flex;
+                flex-direction: column;
+                .mypage--user__img__photo{
+                    height: 170px;
+                    width: 170px;
+                    margin: 0 auto;
+                }
+                p{
+                    padding-bottom: 10px;
+                }
+            }
+        }
+    }
+}
+
+
+// quand l'ecran est plus petit que mobile($xsmall)
+@media (max-width : $xsmall) {
+    .userProfile--main{
+        .mypage--user__info{
+            
+            .mypage--user__img{
+                .mypage--user__img__photo{
+                    height: 110px;
+                    width: 110px;
+                    margin-right:0px;
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,216 @@
+@import '/public/assets/scss/variables';
+
+.mypage--main{
+    @include menuPadding;
+    padding-top: 30px;
+    padding-bottom: 30px;
+    width: 80%;
+    background-color: rgb(224, 224, 224);
+    margin: 100px auto;
+    border-radius: 20px;
+
+    h2{
+        font-family: 'pacifico';
+        font-size: 40px;
+    }
+    .mypage--user__info{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 50px;
+
+        .mypage--user__content{
+            margin-top: 20px;
+        }
+
+        .mypage--user__img{
+            text-align: right;
+
+            .mypage--user__img__photo{
+                height: 180px;
+                width: 180px;
+                border-radius: 100%;
+                background-color: $greycolor;
+            }
+            p{
+                margin-top: 20px;
+            }
+            a{
+                display: block;
+                margin-top: 10px;
+                font-size: 13px;
+                color: $greycolor;
+            }
+        }
+    }
+    
+    .mypage--pageshortcut{
+        @include pagePadding;
+        padding-top: 30px;
+        padding-bottom: 30px;
+        display: flex;
+        justify-content: space-between;
+        gap: 50px;
+        margin-top: 30px;
+        text-align: center;
+        li{
+            width: 110px;
+            p{
+                margin-top: 10px;
+            }
+        }
+        .fontawesome{
+            font-size: 40px;
+            transition: 0.3s opacity;
+
+            &:hover{
+                opacity: 0.3;
+            }
+        }
+    }
+}
+
+
+// quand l'ecran est plus grand que tablette($middle)
+@media (min-width : $middle){
+    .mypage--mylist{
+        display: none;
+    }
+    .mypage--mylist--mobile{
+        display: none;
+    }
+    .mypage--mylist__noresult{
+        display: none;
+    }
+}
+
+
+// quand l'ecran est plus petit que tablette($middle)
+@media (max-width : $middle) {
+    .mypage--main{
+        padding-top: 0px;
+        background-color: transparent;
+        width: 90%;
+        margin: 50px auto;
+
+        .mypage--user__info{
+            flex-direction: column-reverse;
+            margin-top: 50px;
+
+            .mypage--user__content{
+                display: none;
+            }
+
+            .mypage--user__img{
+                display: flex;
+                .mypage--user__img__photo{
+                    height: 130px;
+                    width: 130px;
+                    margin-right: 40px;
+                }
+                div{
+                    display: flex;
+                    flex-direction: column-reverse;
+                }
+                p{
+                    padding-bottom: 10px;
+                }
+            }
+        }
+        .mypage--pageshortcut{
+            display: none;
+        }
+        .mypage--mylist{
+            display: flex;
+            text-align: center;
+            text-wrap: nowrap;
+            margin-top: 50px;
+            padding: 0px;
+            gap: 0px;
+
+            li{
+                width: 40%;
+                &::after{
+                    content: "";
+                    display: block;
+                    width: 100%;
+                    height: 2px;
+                    margin-top: 20px;
+                    background-color: $greycolor;
+                }
+                &:hover{
+
+                    &::after{
+                        content: "";
+                        display: block;
+                        width: 100%;
+                        height: 2px;
+
+                        margin-top: 20px;
+                        background-color: $darkerYellow;
+                    }
+                }
+            }
+            .fontawesome{
+                display: none;
+            }
+        }
+        .mypage--mylist--mobile{
+            display: flex;
+            justify-content: space-between;
+            padding: 20px 10px;
+            border-bottom: 1px solid;
+
+            .mypage--mylist__left{
+                h3{
+                    margin-bottom: 10px;
+                }
+                span:nth-child(3){
+                    color: $greycolor;
+                    display: inline-block;
+                    margin-left: 20px;
+                }
+            }
+            .mypage--mylist__right{
+                text-align: center;
+                border: 2px solid $greycolor;
+                padding: 5px;
+            }
+        }
+
+        .mypage--mylist__noresult{
+            width: 50%;
+            margin: 0 auto;
+            text-align: center;
+            margin-top: 50px;
+        }
+    }
+}
+
+
+// quand l'ecran est plus grand que desktop normal($xlarge)
+@media (min-width : $xlarge){
+    .mypage--main{
+        .mypage--pageshortcut{
+            justify-content: center;
+            gap: 100px;
+        }
+    }
+}
+
+
+// quand l'ecran est plus petit que mobile($xsmall)
+@media (max-width : $xsmall) {
+    .mypage--main{
+        .mypage--user__info{
+            
+            .mypage--user__img{
+                .mypage--user__img__photo{
+                    height: 110px;
+                    width: 110px;
+                    margin-right:0px;
+                }
+            }
+        }
+    }
+}

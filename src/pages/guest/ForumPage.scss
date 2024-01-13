@@ -1,0 +1,181 @@
+@import '/public/assets/scss/variables';
+
+.forum--main{
+    @include pagePadding;
+    display: flex;
+    flex-direction: column;
+    
+    h2{
+        margin-bottom: 40px; 
+    }
+
+    .btn__goBack{
+        cursor: pointer;
+        margin-bottom: 15px;
+        
+        &:hover{
+            font-weight: bold;
+        }
+    }
+
+    .forum--desktop{
+        width: 100%;
+        table-layout: fixed;
+
+        .col-1, .col-2, .col-4, .col-5{
+            width: 13%;
+        }
+        .col-3{
+            width: 60%;
+        }
+        .table__tableheader{
+            th{
+                border: 0px solid transparent;
+                text-wrap: nowrap;
+                font-size: 14px;
+                padding-bottom: 20px;
+            }    
+        }
+        .table__postcontent{
+
+            td{
+                text-align: center;
+                padding: 20px 0px;
+                box-shadow: 0px 1px 0px $greycolor;
+                font-size: 16px;
+
+                &:nth-child(3){
+                    font-weight: bold;
+                    text-align: left;
+                    padding-left: 20px;
+                    text-wrap: wrap;
+                    white-space: nowrap;
+                    overflow: hidden;
+                    text-overflow: ellipsis; 
+                }
+                &:nth-child(5){
+                    font-size: 14px;
+                    color: $greycolor;
+                }
+            }
+        }  
+    }
+
+    .index_buttons{
+        margin: 40px auto 20px;
+        width: 50%;
+        max-width: 300px;
+        display: flex;
+        justify-content: space-evenly;
+
+        .btn__pagination{
+            border: none;
+            background-color: transparent;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        .btn__pagination__active{
+            color: $themecolorBlue;
+        }
+    }
+
+    .noResult{
+        width: 100%;
+        margin-bottom: 30px;
+
+        hr{
+            margin: 50px 0px;
+            width: 100%;
+        }
+        p{
+            text-align: center;
+        }
+    }
+
+    .searchBar{
+        margin: 0px auto;
+        width: 50%;
+
+        form{
+            display: flex;
+            justify-content: center;
+            gap: 5%;
+
+            input:nth-child(1){
+                display: inline-block;
+                width: 70%;
+                max-width: 250px;
+                height: 25px;
+                font-size: 16px;
+                padding: 5px 10px;
+            }
+            input:nth-child(2){
+                width: 20%;
+                max-width: 70px;
+                background-color: $bgcolor;   
+                border: none;
+            }
+        }
+    }
+}
+
+
+
+
+@media (min-width : $middle) {
+    .forum--mobile{
+        display: none;
+    }
+}
+
+@media (max-width : $middle) {
+    .forum--main{
+        @include menuPadding;
+        .forum--desktop{
+            display: none;
+        }
+    
+        .forum--mobile{
+            padding: 0;
+            display: flex;
+            gap: 20px;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 10px;
+            border-bottom: 1px solid;
+    
+            .forum--mobile__left{
+                h3{
+                    margin-bottom: 10px;
+                    font-size: 16px;
+                }
+                span:nth-child(3){
+                    font-size: 14px;
+                    color: $greycolor;
+                    display: inline-block;
+                    margin-left: 20px;
+                }
+            }
+            .forum--mobile__middle{
+                height: 55px;
+                min-width: 50px;
+                max-width: 50px;
+                background-image: url(../../../public/assets/imgs/imgsample.PNG);
+                background-size: cover;
+                background-position: center;
+                margin-left: auto;
+            }
+            .forum--mobile__right{
+                text-align: center;
+                border: 2px solid $greycolor;
+                padding: 5px;
+                text-wrap: nowrap;
+                font-size: 14px;
+            }
+        }
+
+
+    }
+    
+}
+

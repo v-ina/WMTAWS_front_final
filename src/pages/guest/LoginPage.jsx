@@ -20,7 +20,7 @@ function LoginPage (){
         const loginData = {username, password}
         const loginDataJson = JSON.stringify(loginData)
 
-        const responseAfterFetch = await fetch("http://localhost:3333/api/users/login", {method : "POST", headers : {"Content-type" : "application/json"}, body : loginDataJson})
+        const responseAfterFetch = await fetch("http://ec2-13-39-22-148.eu-west-3.compute.amazonaws.com:3333/api/users/login", {method : "POST", headers : {"Content-type" : "application/json"}, body : loginDataJson})
         const responseToJson = await responseAfterFetch.json()
         const token = responseToJson.token
 

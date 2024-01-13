@@ -30,7 +30,7 @@ function PostDetailPage(){
     const [message, setMessage] = useState(null)
     useEffect(()=>{
         (async()=>{
-            const responseOfFetch = await fetch(`http://localhost:3333/api/articles/${postId}`)
+            const responseOfFetch = await fetch(`http://ec2-13-39-22-148.eu-west-3.compute.amazonaws.com:3333/api/articles/${postId}`)
             const responseToJson = await responseOfFetch.json()
             // const postText = responseToJson.data.text.replace(/\r\n|\n|\r/g,'<br/>')
             
@@ -65,7 +65,7 @@ function PostDetailPage(){
     // BDD - ajoute like
     const postLikeRoute = async() => {
         const token = localStorage.getItem("jwt")
-        const responseOfFetch = await fetch(`http://localhost:3333/api/likes/${postId}`,{
+        const responseOfFetch = await fetch(`http://ec2-13-39-22-148.eu-west-3.compute.amazonaws.com:3333/api/likes/${postId}`,{
             method : "POST",
             headers : {
                 Authorization : `Barer ${token}`
@@ -76,7 +76,7 @@ function PostDetailPage(){
     // BDD - supprimer like
     const deleteLikeRoute = async() => {
         const token = localStorage.getItem("jwt")
-        const responseOfFetch = await fetch(`http://localhost:3333/api/likes/${postId}`,{
+        const responseOfFetch = await fetch(`http://ec2-13-39-22-148.eu-west-3.compute.amazonaws.com:3333/api/likes/${postId}`,{
             method : "DELETE",
             headers : {
                 Authorization : `Barer ${token}`
@@ -107,7 +107,7 @@ function PostDetailPage(){
                 articleId : postId
             }
             const commentToJson = JSON.stringify(commentCreate)
-            const createCommentResponse = await fetch("http://localhost:3333/api/comments", {
+            const createCommentResponse = await fetch("http://ec2-13-39-22-148.eu-west-3.compute.amazonaws.com:3333/api/comments", {
                 method : "POST",
                 headers : {
                     "Content-Type" : "application/json",
@@ -137,7 +137,7 @@ function PostDetailPage(){
         }
         const commentToJson = JSON.stringify(commentUpdate)
         console.log('json comment update', commentToJson);
-        const updateCommentResponse = await fetch(`http://localhost:3333/api/comments/${commentId}`, {
+        const updateCommentResponse = await fetch(`http://ec2-13-39-22-148.eu-west-3.compute.amazonaws.com:3333/api/comments/${commentId}`, {
             method : "PUT",
             headers : {
                 "Content-Type" : "application/json",
@@ -159,7 +159,7 @@ function PostDetailPage(){
         const token = localStorage.getItem("jwt")
         if(window.confirm(`do you want to delete this comment?`)){
             alert(`this comment has been succesfuly deleted`)
-            const deleteComment = await fetch(`http://localhost:3333/api/comments/${commentId}`, {
+            const deleteComment = await fetch(`http://ec2-13-39-22-148.eu-west-3.compute.amazonaws.com:3333/api/comments/${commentId}`, {
                 method : "DELETE",
                 headers : {
                     Authorization : `Barer ${token}`
@@ -176,7 +176,7 @@ function PostDetailPage(){
         const token = localStorage.getItem("jwt")
         if(window.confirm(`do you want to report this comment?`)){
             alert(`this comment has been succesfuly reported`)
-            const createReportComment = await fetch(`http://localhost:3333/api/reports/reportComment/${commentId}`, {
+            const createReportComment = await fetch(`http://ec2-13-39-22-148.eu-west-3.compute.amazonaws.com:3333/api/reports/reportComment/${commentId}`, {
                 method : "POST",
                 headers : {
                     Authorization : `Barer ${token}`
@@ -203,7 +203,7 @@ function PostDetailPage(){
         const token = localStorage.getItem("jwt")
         if(window.confirm(`do you want to delete this article?`)){
             alert(`this article has been succesfuly deleted`)
-            const deleteArticle = await fetch(`http://localhost:3333/api/articles/${currentArticle.id}`, {
+            const deleteArticle = await fetch(`http://ec2-13-39-22-148.eu-west-3.compute.amazonaws.com:3333/api/articles/${currentArticle.id}`, {
                 method : "DELETE",
                 headers : {
                     Authorization : `Barer ${token}`
@@ -221,7 +221,7 @@ function PostDetailPage(){
         const token = localStorage.getItem("jwt")
         if(window.confirm(`do you want to report this article?`)){
             alert(`this article has been succesfuly reported`)
-            const createReportArticle = await fetch(`http://localhost:3333/api/reports/reportArticle/${articleId}`, {
+            const createReportArticle = await fetch(`http://ec2-13-39-22-148.eu-west-3.compute.amazonaws.com:3333/api/reports/reportArticle/${articleId}`, {
                 method : "POST",
                 headers : {
                     Authorization : `Barer ${token}`

@@ -19,7 +19,7 @@ function PostEditPage(){
     // BDD - récupérer l'article  
     useEffect(()=>{
         (async()=>{
-            const responseOfFetch = await fetch(`http://localhost:3333/api/articles/${articleId}`)
+            const responseOfFetch = await fetch(`http://ec2-13-39-22-148.eu-west-3.compute.amazonaws.com:3333/api/articles/${articleId}`)
             const responseToJson = await responseOfFetch.json()
             setArticle(responseToJson.data)
         })()
@@ -56,7 +56,7 @@ function PostEditPage(){
             formData.append("numOfMember", JSON.stringify(numOfMember))
             formData.append("text", JSON.stringify(text))
         }
-        const editArticlesResponse = await fetch(`http://localhost:3333/api/articles/${articleId}`, {
+        const editArticlesResponse = await fetch(`http://ec2-13-39-22-148.eu-west-3.compute.amazonaws.com:3333/api/articles/${articleId}`, {
             method : "PUT",
             headers : {
                 Authorization : `Barer ${token}`

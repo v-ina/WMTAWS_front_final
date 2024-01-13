@@ -49,7 +49,7 @@ function CreatPostPage(){
             formData.append("text", JSON.stringify(text))
         }
 
-        const createArticlesResponse = await fetch("http://localhost:3333/api/articles", {
+        const createArticlesResponse = await fetch("http://ec2-13-39-22-148.eu-west-3.compute.amazonaws.com:3333/api/articles", {
             method : "POST",
             headers : {
                 Authorization : `Barer ${token}`

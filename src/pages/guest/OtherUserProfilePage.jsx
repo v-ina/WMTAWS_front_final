@@ -14,7 +14,7 @@ function OtherUserProfilePage (){
     // BDD - récupérer l'info d'utilisateur
     const userFetch = async() =>{
         try{
-            const responseOfFetch = await fetch(`http://localhost:3333/api/users/${userId}`)
+            const responseOfFetch = await fetch(`http://ec2-13-39-22-148.eu-west-3.compute.amazonaws.com:3333/api/users/${userId}`)
             const responseToJson = await responseOfFetch.json()
             setSelectedUser(responseToJson.data)
         } catch (error){

@@ -31,7 +31,7 @@ function ForumPage(){
     // BDD - récupérer nom de categorie
     useEffect(()=>{
         (async()=>{
-            const responseOfFetch = await fetch(`http://localhost:3333/api/categories/${forumCategory}`)
+            const responseOfFetch = await fetch(`http://ec2-13-39-22-148.eu-west-3.compute.amazonaws.com:3333/api/categories/${forumCategory}`)
             const responseToJson = await responseOfFetch.json()
             return setCurrentCategory(responseToJson.data[0])
         })()        
@@ -40,7 +40,7 @@ function ForumPage(){
     // BDD - récupérer les articles
     useEffect(()=>{
         (async()=>{
-            const responseOfFetch = await fetch("http://localhost:3333/api/articles")
+            const responseOfFetch = await fetch("http://ec2-13-39-22-148.eu-west-3.compute.amazonaws.com:3333/api/articles")
             const responseToJson = await responseOfFetch.json()
             return setArticles(responseToJson.data)  
         })()
@@ -212,7 +212,7 @@ function ForumPage(){
     const handleSearchQuery = async(event, keyword) => {
         event.preventDefault()
         if(keyword.trim().length>0){
-            const responseOfFetch = await fetch(`http://localhost:3333/api/articles?search=${keyword}`)
+            const responseOfFetch = await fetch(`http://ec2-13-39-22-148.eu-west-3.compute.amazonaws.com:3333/api/articles?search=${keyword}`)
             const responseToJson = await responseOfFetch.json()
             const sortedArticles = responseToJson.data.sort((a,b) => {return new Date(b.createdAt) - new Date(a.createdAt)})
             setCurrentForumArticle(sortedArticles)

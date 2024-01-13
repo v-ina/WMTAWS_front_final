@@ -35,7 +35,7 @@ function HomePage (){
             userId : decodedToken.data.userId, 
         }
         const suggestionToJson = JSON.stringify(createSuggestion)
-        const createCommentResponse = await fetch("http://localhost:3333/api/suggestions", {
+        const createCommentResponse = await fetch("http://ec2-13-39-22-148.eu-west-3.compute.amazonaws.com:3333/api/suggestions", {
             method : "POST",
             headers : {
                 "Content-Type" : "application/json",

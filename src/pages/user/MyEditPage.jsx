@@ -28,7 +28,7 @@ function MyEditPage(){
         try{
             const token = localStorage.getItem("jwt") 
             const decodedToken = jwtDecode(token)
-            const responseOfFetch = await fetch(`http://localhost:3333/api/users/${decodedToken.data.userId}`)
+            const responseOfFetch = await fetch(`http://ec2-13-39-22-148.eu-west-3.compute.amazonaws.com:3333/api/users/${decodedToken.data.userId}`)
             const responseToJson = await responseOfFetch.json()
             setLoginuser(responseToJson.data)
         } catch (error){
@@ -90,7 +90,7 @@ function MyEditPage(){
         }
         
         const token = localStorage.getItem("jwt") 
-        const EditUserResponse = await fetch(`http://localhost:3333/api/users/${loginUser.id}`, {
+        const EditUserResponse = await fetch(`http://ec2-13-39-22-148.eu-west-3.compute.amazonaws.com:3333/api/users/${loginUser.id}`, {
             method : "PUT",
             headers : {
                 Authorization : `Barer ${token}`
@@ -109,7 +109,7 @@ function MyEditPage(){
         if(window.confirm(`are you sure that you want to delete your account?`)){
             alert(`your informations has been succesfuly deleted`)
             const token = localStorage.getItem('jwt')
-            await fetch(`http://localhost:3333/api/users/${userId}`, {method : "DELETE", headers : {'Authorization': `Bearer ${token}`}})
+            await fetch(`http://ec2-13-39-22-148.eu-west-3.compute.amazonaws.com:3333/api/users/${userId}`, {method : "DELETE", headers : {'Authorization': `Bearer ${token}`}})
             setTimeout(()=>{
                 localStorage.removeItem("jwt")
             },'100')

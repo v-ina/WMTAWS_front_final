@@ -26,7 +26,7 @@ function MyPage(){
         try{
             const token = localStorage.getItem("jwt") 
             const decodedToken = jwtDecode(token)
-            const responseOfFetch = await fetch(`http://localhost:3333/api/users/${decodedToken.data.userId}`)
+            const responseOfFetch = await fetch(`http://ec2-13-39-22-148.eu-west-3.compute.amazonaws.com:3333/api/users/${decodedToken.data.userId}`)
             const responseToJson = await responseOfFetch.json()
             setLoginuser(responseToJson.data)
         } catch (error){
@@ -46,7 +46,7 @@ function MyPage(){
     const [likeList, setLikeList] = useState(null)
     const handleClickLikeList = async() =>{
         const token = localStorage.getItem("jwt") 
-        const responseOfFetch = await fetch(`http://localhost:3333/api/likes`, {
+        const responseOfFetch = await fetch(`http://ec2-13-39-22-148.eu-west-3.compute.amazonaws.com:3333/api/likes`, {
             method : "GET",
             headers : {
                 Authorization : `Barer ${token}`
@@ -66,7 +66,7 @@ function MyPage(){
     // BDD - récupérer tous les Articles d'utilisateur    
     const [articeList, setArticleList] = useState(null)
     const handleClickArticleList = async() =>{
-        const responseOfFetch = await fetch(`http://localhost:3333/api/articles`)
+        const responseOfFetch = await fetch(`http://ec2-13-39-22-148.eu-west-3.compute.amazonaws.com:3333/api/articles`)
         const responseToJson = await responseOfFetch.json()
         setArticleList(responseToJson.data)
         setCurrentList('article')
@@ -81,7 +81,7 @@ function MyPage(){
     // BDD - récupérer tous les commentraires d'utilisateur 
     const [commentList, setCommentList] = useState(null)
     const handleClickCommentList = async() => {
-        const responseOfFetch = await fetch(`http://localhost:3333/api/comments`)
+        const responseOfFetch = await fetch(`http://ec2-13-39-22-148.eu-west-3.compute.amazonaws.com:3333/api/comments`)
         const responseToJson = await responseOfFetch.json()
         setCommentList(responseToJson.data)
         setCurrentList('comment')

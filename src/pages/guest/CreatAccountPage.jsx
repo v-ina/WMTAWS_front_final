@@ -48,7 +48,7 @@ function CreatAccountPage(){
             birthdate : birthdate
         }
         const userCreateToJson = JSON.stringify(userToCreate)
-        const createUserResponse = await fetch("http://localhost:3333/api/users", {
+        const createUserResponse = await fetch("http://ec2-13-39-22-148.eu-west-3.compute.amazonaws.com:3333/api/users", {
             method : "POST",
             headers : {
                 "Content-Type" : "application/json"

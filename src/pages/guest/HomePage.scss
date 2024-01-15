@@ -164,14 +164,18 @@
 // quand l'ecran est plus petit que tablette($middle)
 @media (max-width : $middle) {
     .home--main--banner{
-        height: 70vh;
-        gap: 20px;
-        background-size: 400px;
-        h1{
-            font-size: 2rem;
-        }
-        p{
-            font-size: 16px;
+        .album{
+            height: 70vh;
+            gap: 20px;
+            background-size: 400px;
+            .images{
+                h1{
+                    font-size: 2rem;
+                }
+                p{
+                    font-size: 16px;
+                }
+            }
         }
     }
 
@@ -195,6 +199,49 @@
         }
         label{
             font-size: 12px;
+        }
+        textarea{
+            min-width: 100%;
+            max-width: 100%;
+        }
+    }
+}
+
+// quand l'ecran est plus petit que mobile($xsmall)
+@media (max-width : $xsmall) {
+    .home--main--banner{
+        .container{
+
+            .album{
+                // height: 70vh;
+                background-size: 400px;
+                .images{
+                    div{
+                        h1{
+                            margin-top: 20px;
+                            font-size: 1.5rem;
+                        }
+                        p{
+                            font-size: 16px;
+                            margin-bottom: 100px;
+                        }
+    
+                    }
+                }
+            }
+        }
+    }
+
+    .home--main--form{
+        margin: 50px 10%;
+        h2{
+            font-size: 15px;
+        }
+        p{
+            font-size: 11px;
+        }
+        label{
+            font-size: 10px;
         }
         textarea{
             min-width: 100%;

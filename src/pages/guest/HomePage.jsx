@@ -6,6 +6,7 @@ import { jwtDecode } from 'jwt-decode'
 import { Link } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faBookOpen, faCode, faGamepad, faFootball, faChevronRight, faCircleChevronLeft, faCircleChevronRight } from '@fortawesome/free-solid-svg-icons'
+import {apiUrl, apiPort} from '../../utils/apiConfigs'
 
 // 여기에는 뭐 크게 어려운건 없음. 토큰이 없으면 가입하라는 scroll만 추가시켜보자
 
@@ -35,7 +36,7 @@ function HomePage (){
             userId : decodedToken.data.userId, 
         }
         const suggestionToJson = JSON.stringify(createSuggestion)
-        const createCommentResponse = await fetch("http://ec2-13-39-22-148.eu-west-3.compute.amazonaws.com:3333/api/suggestions", {
+        const createCommentResponse = await fetch(`http://ec2-${apiUrl}.eu-west-3.compute.amazonaws.com:${apiPort}/api/suggestions`, {
             method : "POST",
             headers : {
                 "Content-Type" : "application/json",
@@ -67,6 +68,7 @@ function HomePage (){
         } 
     }
 
+    /*
     useEffect(() => {
         setInterval(() => {
             if(slideIndex<4){
@@ -76,10 +78,9 @@ function HomePage (){
                 setPositionValue(0)
                 setSlideIndex(0)
             }
-        }, 2000)    
-      }, [positionValue])
-
-
+        }, 7000)    
+      }, [slideIndex])
+      */
 
     return(
     <>

@@ -3,6 +3,7 @@ import Header from '../../components/guest/Header'
 import Footer from '../../components/guest/Footer'
 import { useParams } from 'react-router-dom'
 import { useEffect, useState } from 'react'
+import { apiPort, apiUrl } from '../../utils/apiConfigs'
 
 
 function OtherUserProfilePage (){
@@ -14,7 +15,7 @@ function OtherUserProfilePage (){
     // BDD - récupérer l'info d'utilisateur
     const userFetch = async() =>{
         try{
-            const responseOfFetch = await fetch(`http://ec2-13-39-22-148.eu-west-3.compute.amazonaws.com:3333/api/users/${userId}`)
+            const responseOfFetch = await fetch(`http://ec2-${apiUrl}.eu-west-3.compute.amazonaws.com:${apiPort}/api/users/${userId}`)
             const responseToJson = await responseOfFetch.json()
             setSelectedUser(responseToJson.data)
         } catch (error){

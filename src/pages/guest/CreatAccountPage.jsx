@@ -3,6 +3,7 @@ import Header from '../../components/guest/Header'
 import Footer from '../../components/guest/Footer'
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { apiPort, apiUrl } from '../../utils/apiConfigs'
 
 
 function CreatAccountPage(){
@@ -48,7 +49,7 @@ function CreatAccountPage(){
             birthdate : birthdate
         }
         const userCreateToJson = JSON.stringify(userToCreate)
-        const createUserResponse = await fetch("http://ec2-13-39-22-148.eu-west-3.compute.amazonaws.com:3333/api/users", {
+        const createUserResponse = await fetch(`http://ec2-${apiUrl}.eu-west-3.compute.amazonaws.com:${apiPort}/api/users`, {
             method : "POST",
             headers : {
                 "Content-Type" : "application/json"
@@ -68,6 +69,9 @@ function CreatAccountPage(){
     <>
         <Header />
         <main className='creataccount--main'>
+            <div>
+                <img src="/assets/imgs/logo.png" alt="" />
+            </div>
             <h1>Join Our Team WMT</h1>
             <form action=""  onSubmit={handleSubmitCreateAccount}>
                 {idMessage && <p className='createAccound__fail'>{idMessage}</p>}
@@ -77,21 +81,21 @@ function CreatAccountPage(){
                 <label htmlFor="password">PASSWORD :</label>
                 <input type="password" placeholder="Password" name='password'/>
 
-                <label htmlFor="email">E-MAIL :</label>
-                <input type="email" placeholder='your e-mail will be used for finding your password'name='email'/>
+                <label htmlFor="email">E-MAIL : &nbsp;&nbsp;&nbsp;&nbsp; <span>(*we use email for finding forgot password)</span></label>
+                <input type="email" placeholder='E-mail'name='email'/>
 
                 {passwordMessage && <p className='createAccound__fail'>{passwordMessage}</p>}
                 <label htmlFor="passwordConfirm">CONFIRM PASSWORD :</label>
                 <input type="password" placeholder="Password : confirm password"  name='passwordConfirm' onChange={deleteMessage}/>
                 
-                <label htmlFor="firstname">FIRST NAME : &nbsp;&nbsp;&nbsp;&nbsp; (*we use first name for finding forgot password)</label>
+                <label htmlFor="firstname">FIRST NAME : &nbsp;&nbsp;&nbsp;&nbsp; <span>(*we use first name for finding forgot password)</span></label>
                 <input type="text" placeholder='first name' name='firstname'/>
 
                 {discordMessage && <p className='createAccound__fail'>{discordMessage}</p>}
                 <label htmlFor="discordId">DISCORD ID :</label>
                 <input type="text" placeholder='discord id' name='discordId'  onChange={deleteMessage}/>
 
-                <label htmlFor="birthdate">BIRTH DATE : &nbsp;&nbsp;&nbsp;&nbsp; (*we use first name for finding forgot password)</label>
+                <label htmlFor="birthdate">BIRTH DATE : &nbsp;&nbsp;&nbsp;&nbsp; <span>(*we use birth date for finding forgot password)</span></label>
                 <input type="date" id='birthdate'name='birthdate'/>
 
                 <input type='submit' value={"join WMT"} /> 

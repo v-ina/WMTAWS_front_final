@@ -4,6 +4,7 @@ import Footer from '../../components/guest/Footer'
 import { Link, useNavigate } from 'react-router-dom'
 import { useState } from 'react'
 import { jwtDecode } from 'jwt-decode'
+import { apiPort, apiUrl } from '../../utils/apiConfigs'
 
 
 function LoginPage (){
@@ -20,7 +21,7 @@ function LoginPage (){
         const loginData = {username, password}
         const loginDataJson = JSON.stringify(loginData)
 
-        const responseAfterFetch = await fetch("http://ec2-13-39-22-148.eu-west-3.compute.amazonaws.com:3333/api/users/login", {method : "POST", headers : {"Content-type" : "application/json"}, body : loginDataJson})
+        const responseAfterFetch = await fetch(`http://ec2-${apiUrl}.eu-west-3.compute.amazonaws.com:${apiPort}/api/users/login`, {method : "POST", headers : {"Content-type" : "application/json"}, body : loginDataJson})
         const responseToJson = await responseAfterFetch.json()
         const token = responseToJson.token
 

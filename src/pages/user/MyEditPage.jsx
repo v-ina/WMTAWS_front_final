@@ -4,6 +4,7 @@ import Footer from '../../components/guest/Footer'
 import { useNavigate } from 'react-router-dom';
 import { jwtDecode } from 'jwt-decode';
 import { useEffect, useState } from 'react';
+import { apiPort, apiUrl } from '../../utils/apiConfigs'
 
 // 사진을 불러오는 경우는 storage를 사용한 뒤에 불러올수 있을 듯함. 그 외는 끝!
 
@@ -28,7 +29,7 @@ function MyEditPage(){
         try{
             const token = localStorage.getItem("jwt") 
             const decodedToken = jwtDecode(token)
-            const responseOfFetch = await fetch(`http://ec2-13-39-22-148.eu-west-3.compute.amazonaws.com:3333/api/users/${decodedToken.data.userId}`)
+            const responseOfFetch = await fetch(`http://ec2-${apiUrl}.eu-west-3.compute.amazonaws.com:${apiPort}/api/users/${decodedToken.data.userId}`)
             const responseToJson = await responseOfFetch.json()
             setLoginuser(responseToJson.data)
         } catch (error){
@@ -90,7 +91,7 @@ function MyEditPage(){
         }
         
         const token = localStorage.getItem("jwt") 
-        const EditUserResponse = await fetch(`http://ec2-13-39-22-148.eu-west-3.compute.amazonaws.com:3333/api/users/${loginUser.id}`, {
+        const EditUserResponse = await fetch(`http://ec2-${apiUrl}.eu-west-3.compute.amazonaws.com:${apiPort}/api/users/${loginUser.id}`, {
             method : "PUT",
             headers : {
                 Authorization : `Barer ${token}`
@@ -109,7 +110,7 @@ function MyEditPage(){
         if(window.confirm(`are you sure that you want to delete your account?`)){
             alert(`your informations has been succesfuly deleted`)
             const token = localStorage.getItem('jwt')
-            await fetch(`http://ec2-13-39-22-148.eu-west-3.compute.amazonaws.com:3333/api/users/${userId}`, {method : "DELETE", headers : {'Authorization': `Bearer ${token}`}})
+            await fetch(`http://ec2-${apiUrl}.eu-west-3.compute.amazonaws.com:${apiPort}/api/users/${userId}`, {method : "DELETE", headers : {'Authorization': `Bearer ${token}`}})
             setTimeout(()=>{
                 localStorage.removeItem("jwt")
             },'100')

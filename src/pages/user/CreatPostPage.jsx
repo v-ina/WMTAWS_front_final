@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import { jwtDecode } from 'jwt-decode';
 import { useState } from 'react';
 import { useVerifyUserIsLogged } from '../../utils/security-utils';
+import { apiPort, apiUrl } from '../../utils/apiConfigs'
 
 
 function CreatPostPage(){
@@ -49,7 +50,7 @@ function CreatPostPage(){
             formData.append("text", JSON.stringify(text))
         }
 
-        const createArticlesResponse = await fetch("http://ec2-13-39-22-148.eu-west-3.compute.amazonaws.com:3333/api/articles", {
+        const createArticlesResponse = await fetch(`http://ec2-${apiUrl}.eu-west-3.compute.amazonaws.com:${apiPort}/api/articles`, {
             method : "POST",
             headers : {
                 Authorization : `Barer ${token}`

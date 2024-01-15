@@ -226,16 +226,29 @@
 @media (max-width : $xsmall) {
     .header--navbar--mobile{
         .navbar--mobile__sidebar{
+
+            .user__infos{
+                margin-top: 30px;
+                padding-right: 10px;
+                padding-bottom: 15px;
+                .user__name{
+                    font-size: 22px;
+
+                }
+            }
             .pageshortcut{
                 padding-right: 40px;
                 gap: 25px;
-                i{
-                    font-size: 30px;
+                padding-bottom: 10px;
+                .fontawesome{
+                    font-size: 10px;
                 }
             }
             .forumshortcut{
-                font-size: 13px;
-
+                font-size: 16px;
+                li{
+                    margin: 40px 0px;
+                }
             }
         }
 

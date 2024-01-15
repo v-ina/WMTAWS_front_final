@@ -5,6 +5,7 @@ import { useNavigate, useParams } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import { jwtDecode } from 'jwt-decode'
 import { Link } from 'react-router-dom'
+import { apiPort, apiUrl } from '../../utils/apiConfigs'
 
 function MyListPage(){
 
@@ -26,7 +27,7 @@ function MyListPage(){
     useEffect(()=>{
         (async()=>{
             const token = localStorage.getItem("jwt") 
-            const responseOfFetch = await fetch(`http://ec2-13-39-22-148.eu-west-3.compute.amazonaws.com:3333/api/likes`, {
+            const responseOfFetch = await fetch(`http://ec2-${apiUrl}.eu-west-3.compute.amazonaws.com:${apiPort}/api/likes`, {
                 method : "GET",
                 headers : {
                     Authorization : `Barer ${token}`
@@ -48,7 +49,7 @@ function MyListPage(){
     const [articeList, setArticleList] = useState(null)
     useEffect(()=>{
         (async()=>{
-            const responseOfFetch = await fetch(`http://ec2-13-39-22-148.eu-west-3.compute.amazonaws.com:3333/api/articles`)
+            const responseOfFetch = await fetch(`http://ec2-${apiUrl}.eu-west-3.compute.amazonaws.com:${apiPort}/api/articles`)
             const responseToJson = await responseOfFetch.json()
             setArticleList(responseToJson.data)
         })()
@@ -64,7 +65,7 @@ function MyListPage(){
     const [commentList, setCommentList] = useState(null)
     useEffect(()=>{
         (async()=>{
-            const responseOfFetch = await fetch(`http://ec2-13-39-22-148.eu-west-3.compute.amazonaws.com:3333/api/comments`)
+            const responseOfFetch = await fetch(`http://ec2-${apiUrl}.eu-west-3.compute.amazonaws.com:${apiPort}/api/comments`)
             const responseToJson = await responseOfFetch.json()
             setCommentList(responseToJson.data)
         })()

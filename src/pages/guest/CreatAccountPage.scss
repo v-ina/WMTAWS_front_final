@@ -1,9 +1,19 @@
-@import '/public/assets/scss/variables';
+ @import '/public/assets/scss/variables';
 
 .creataccount--main{
+    margin-top: 80px;
+    div{
+        width: 40%;
+        min-width: 200px;
+        max-width: 400px;
+        margin: auto;
+        img{
+            width: 100%;
+        }
+    }
     h1{
+        margin-top: 40px;
         text-align: center;
-        margin-top: 50px
     }
     form{
         @include pagePadding;
@@ -25,6 +35,54 @@
             font-size: 12px;
             color: $themecolorRed;
             margin-bottom: 5px;
+        }
+    }
+}
+
+
+
+// quand l'ecran est plus petit que tabllette($middle)
+@media (max-width : $middle) {
+    .creataccount--main{
+
+        form{
+
+            label{
+                font-size: 14px;
+                span{
+                    font-size: 10px;
+                    display: block;
+                    margin-bottom: 5px;
+                    color: $themecolorBlue;
+                }
+            }
+        }
+    }
+}
+
+
+
+// quand l'ecran est plus petit que mobile($xsmall)
+@media (max-width : $xsmall) {
+    .creataccount--main{
+
+        h1{
+            margin-top: 20px;
+        }
+        form{
+            padding-top: 30px;
+            label{
+                font-size: 14px;
+                span{
+                    font-size: 10px;
+                    display: block;
+                    margin-bottom: 5px;
+                    color: $themecolorBlue;
+                }
+            }
+            input::placeholder{
+                font-size: 12px;
+            }
         }
     }
 }

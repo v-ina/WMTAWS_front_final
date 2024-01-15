@@ -88,7 +88,7 @@ function HomePage (){
         <main className="home--main">
             <section className="home--main--banner">
 
-            <div className='container'>
+            <div className='container'> 
                 <div className='btn-LeftRight'>
                     <FontAwesomeIcon icon={faCircleChevronLeft} className='btn'
                         style={{

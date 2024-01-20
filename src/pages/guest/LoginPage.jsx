@@ -45,7 +45,7 @@ function LoginPage (){
         <main className='login--main'>
             <form onSubmit={handleLogin} action="">
                 <input type="text" placeholder="username" />
-                <input type="text" placeholder="password" />
+                <input type="password" placeholder="password" />
                 {message && <p className='loginFail'>*{message}</p>}
                 <input type='submit' className='btn__connect' value="Connect"/>
                 

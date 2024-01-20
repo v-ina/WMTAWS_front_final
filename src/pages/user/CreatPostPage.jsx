@@ -86,9 +86,9 @@ function CreatPostPage(){
                             <select name="categoryId" id="forumtype" >
                                 <option value="">select...</option>
                                 <option value="1">dev</option>
-                                <option value="4">student</option>
                                 <option value="2">sport</option>
                                 <option value="3">game</option>
+                                <option value="4">student</option>
                             </select>
                         </label>
                     </div>

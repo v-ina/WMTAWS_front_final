@@ -80,13 +80,13 @@ function CreatAccountPage(){
 
                 <label htmlFor="password">PASSWORD :</label>
                 <input type="password" placeholder="Password" name='password'/>
-
-                <label htmlFor="email">E-MAIL : &nbsp;&nbsp;&nbsp;&nbsp; <span>(*we use email for finding forgot password)</span></label>
-                <input type="email" placeholder='E-mail'name='email'/>
-
+                
                 {passwordMessage && <p className='createAccound__fail'>{passwordMessage}</p>}
                 <label htmlFor="passwordConfirm">CONFIRM PASSWORD :</label>
                 <input type="password" placeholder="Password : confirm password"  name='passwordConfirm' onChange={deleteMessage}/>
+
+                <label htmlFor="email">E-MAIL : &nbsp;&nbsp;&nbsp;&nbsp; <span>(*we use email for finding forgot password)</span></label>
+                <input type="email" placeholder='E-mail'name='email'/>
                 
                 <label htmlFor="firstname">FIRST NAME : &nbsp;&nbsp;&nbsp;&nbsp; <span>(*we use first name for finding forgot password)</span></label>
                 <input type="text" placeholder='first name' name='firstname'/>

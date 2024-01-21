@@ -68,6 +68,22 @@ function HomePage (){
         } 
     }
 
+<<<<<<< HEAD
+	useEffect(()=>{
+		const slideInterval = setInterval(()=>{
+			if(slideIndex !== 4){
+			next()
+			} 
+			if (slideIndex ===4){
+			setPositionValue(0)
+			setSlideIndex(0)
+			}
+		},4000)
+		return () =>{
+		clearInterval(slideInterval)
+		}
+	},[])
+=======
     useEffect(() => {
         const slideInterval = setInterval(() => {
             if(slideIndex !== 4){
@@ -82,7 +98,9 @@ function HomePage (){
             clearInterval(slideInterval)
         }
       }, [slideIndex])
+>>>>>>> 7cfea79c44a5f9a275592d753ac242d944a03242
 
+ 
     return(
     <>
         <Header />

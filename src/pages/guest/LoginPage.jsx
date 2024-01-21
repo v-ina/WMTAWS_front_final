@@ -41,6 +41,8 @@ function LoginPage (){
     }
 
 
+    ////////////////////////////////////////////////////////////////////////////////// FUNCTION    
+    // icon pour masquer/demasquer mdp 
     const [masking, setMasking] = useState(true)
     const maskingPasswordToggle = () => {
         if(masking){

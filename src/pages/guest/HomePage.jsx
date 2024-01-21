@@ -68,20 +68,22 @@ function HomePage (){
         } 
     }
 
-    /*
-    useEffect(() => {
-        setInterval(() => {
-            if(slideIndex<4){
-                next()
-            } 
-            if(slideIndex === 4){
-                setPositionValue(0)
-                setSlideIndex(0)
-            }
-        }, 7000)    
-      }, [slideIndex])
-      */
+	useEffect(()=>{
+		const slideInterval = setInterval(()=>{
+			if(slideIndex !== 4){
+			next()
+			} 
+			if (slideIndex ===4){
+			setPositionValue(0)
+			setSlideIndex(0)
+			}
+		},4000)
+		return () =>{
+		clearInterval(slideInterval)
+		}
+	},[])
 
+ 
     return(
     <>
         <Header />

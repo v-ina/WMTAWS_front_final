@@ -61,8 +61,8 @@ function CreatPostPage(){
         let forumCategory = ''
         {categoryId === 1 && (forumCategory = 'dev')}
         {categoryId === 2 && (forumCategory = 'sport')}
-        {categoryId === 3 && (forumCategory = 'game')}
-        {categoryId === 4 && (forumCategory = 'student')}
+        {categoryId === 3 && (forumCategory = 'student')}
+        {categoryId === 4 && (forumCategory = 'game')}
         if(createArticlesResponse.status === 200 || createArticlesResponse.status ===204 ) {
             setMessage('Articles cree!')
             navigate(`/forum/${forumCategory}`)
@@ -87,8 +87,8 @@ function CreatPostPage(){
                                 <option value="">select...</option>
                                 <option value="1">dev</option>
                                 <option value="2">sport</option>
-                                <option value="3">game</option>
-                                <option value="4">student</option>
+                                <option value="3">student</option>
+                                <option value="4">game</option>
                             </select>
                         </label>
                     </div>

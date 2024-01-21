@@ -77,7 +77,7 @@ function HomePage (){
                 setPositionValue(0)
                 setSlideIndex(0)
             }
-        }, 4000)    
+        }, 5000)    
         return () => {
             clearInterval(slideInterval)
         }

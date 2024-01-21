@@ -20,13 +20,27 @@
             font-size: 15px;
             padding-left: 10px;
         }
-        input:nth-child(2){
-            margin: 0 auto;
-            height: 30px;
-            font-size: 15px;
-            padding-left: 10px;
-            margin: 15px;
+
+        label{
+            position: relative;
+
+            .fontawesomeeye{
+                position: absolute;
+                right: -90px;
+                top: 5px;
+            }
+            .masking{
+                opacity: 0.3;
+            }
+            input{
+                margin: 0 auto;
+                height: 30px;
+                font-size: 15px;
+                padding-left: 10px;
+                margin: 15px;
+            }
         }
+
         .joinsite{
             margin-top: 50px;
         }

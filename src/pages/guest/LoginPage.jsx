@@ -5,6 +5,8 @@ import { Link, useNavigate } from 'react-router-dom'
 import { useState } from 'react'
 import { jwtDecode } from 'jwt-decode'
 import { apiPort, apiUrl } from '../../utils/apiConfigs'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faEyeSlash } from '@fortawesome/free-solid-svg-icons'
 
 
 function LoginPage (){
@@ -39,13 +41,28 @@ function LoginPage (){
     }
 
 
+    const [masking, setMasking] = useState(true)
+    const maskingPasswordToggle = () => {
+        if(masking){
+            setMasking(false)
+        } else {
+            setMasking(true)
+        }
+    }
+
+
     return(
     <>
         <Header currentPage={"loginPage"} />
         <main className='login--main'>
             <form onSubmit={handleLogin} action="">
                 <input type="text" placeholder="username" />
-                <input type="text" placeholder="password" />
+
+                <label htmlFor="">
+                    <FontAwesomeIcon onClick={maskingPasswordToggle} className= {masking? "fontawesomeeye" : "fontawesomeeye masking"} icon={faEyeSlash} />
+                    <input type={masking ? "password" : "text"} placeholder="password" />
+                </label>
+
                 {message && <p className='loginFail'>*{message}</p>}
                 <input type='submit' className='btn__connect' value="Connect"/>
                 

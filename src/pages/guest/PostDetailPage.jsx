@@ -48,6 +48,17 @@ function PostDetailPage(){
         {currentArticle.categoryId === 4 && (currentForumCategory = 'student')}
     }
 
+    const articleText = () =>{
+        const element = []
+        if(currentArticle){
+            const articleWithEnter = currentArticle.text.substr(1,currentArticle.text.length-2).split(`\\n`);
+            articleWithEnter.map(eachline =>{
+                return element.push(<p> {eachline} </p>)
+            })
+        }
+        return element
+    }
+    
 
     /////////////////////////////////////////////////////////////////////////////////////////////// FUNCTION - LIKE
     // like - toggle like btn
@@ -290,15 +301,6 @@ function PostDetailPage(){
     }
 
 
-
-    const escapedNewLineToLineBreakTag = (string) => {
-        return string.split('\n').map((item, index) => {
-          return (index === 0) ? item : [<br key={index} />, item]
-        })
-      }
-
-
-
     return(
         <>
             <Header currentPage={forumCategory}/>
@@ -342,7 +344,7 @@ function PostDetailPage(){
                                 <img src="/assets/imgs/imgsample.PNG" alt="" />
                             </div>
                         )}
-                        <p  style={{whiteSpace: "pre-wrap"}} > {currentArticle.text.substr(1,currentArticle.text.length-2)} </p>
+                        {articleText()}
                     </div>
 
                     <p className="post--comment__total">Comments &nbsp;&nbsp; {currentArticle.comments.length}</p>

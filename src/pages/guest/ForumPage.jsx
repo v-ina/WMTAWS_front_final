@@ -239,7 +239,7 @@ function ForumPage(){
             <main className="forum--main"> 
                 {!searchQuery ? (
                     <h2>
-                        {forumCategory} forum 
+                        FORUM - {forumCategory}
                     </h2>
                 ):(
                     <>

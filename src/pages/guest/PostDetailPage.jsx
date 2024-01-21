@@ -44,8 +44,8 @@ function PostDetailPage(){
     if (currentArticle){
         {currentArticle.categoryId === 1 && (currentForumCategory = 'dev')}
         {currentArticle.categoryId === 2 && (currentForumCategory = 'sport')}
-        {currentArticle.categoryId === 3 && (currentForumCategory = 'game')}
-        {currentArticle.categoryId === 4 && (currentForumCategory = 'student')}
+        {currentArticle.categoryId === 3 && (currentForumCategory = 'student')}
+        {currentArticle.categoryId === 4 && (currentForumCategory = 'game')}
     }
 
     const articleText = () =>{

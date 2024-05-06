@@ -30,6 +30,13 @@
                 width: 180px;
                 border-radius: 100%;
                 background-color: $greycolor;
+                overflow: hidden;
+
+                img{
+                    width: 100%;
+                    height: 100%;
+                    object-fit: cover;
+                }
             }
             p{
                 margin-top: 20px;

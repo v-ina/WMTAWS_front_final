@@ -37,8 +37,12 @@ function OtherUserProfilePage (){
                     <p className="mypage--user__content">
                         {selectedUser.introduction}
                     </p>
+                    
                     <div className="mypage--user__img">
-                        <div className='mypage--user__img__photo'></div>
+
+                        <div className='mypage--user__img__photo'>
+                            <img src={selectedUser.photo !== null ? (selectedUser.photo) : (`http://ec2-${apiUrl}.eu-west-3.compute.amazonaws.com:${apiPort}/userphotos/randomUser.jpg`)} alt="image utilisateur" />
+                        </div>
                         <div>
                             <p>discord : {selectedUser.discordId}</p>
                         </div>

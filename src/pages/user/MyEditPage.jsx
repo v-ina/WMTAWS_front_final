@@ -132,6 +132,8 @@ function MyEditPage(){
             {loginUser && (
                 <main className="mypageEdit--main">
                     <div className='mypageEdit--user__img'></div>
+                    <div className='mypageEdit--user__img'><img src={loginUser.photo !== null ? (loginUser.photo) : (`http://ec2-${apiUrl}.eu-west-3.compute.amazonaws.com:${apiPort}/userphotos/randomUser.jpg`)} alt="image utilisateur" /></div>
+
                     <form action="" onSubmit={handleSubmitEditAccount}>
                         <input type="file" id="file" accept=".jpg, .jpeg, .png" name='photo' className='btn__img' />
                         <label for="pw">PASSWORD</label>

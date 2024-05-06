@@ -328,7 +328,9 @@ function PostDetailPage(){
 
                     </div>
                     <div className="post--user__infos">
-                        <Link to={`/userprofile/${currentArticle.user.id}`}><div className="user__img"></div></Link>
+                    <Link to={`/userprofile/${currentArticle.user.id}`}><div className="user__img"><img src={currentArticle.user.photo !== null ? (currentArticle.user.photo) : (`http://ec2-${apiUrl}.eu-west-3.compute.amazonaws.com:${apiPort}/userphotos/randomUser.jpg`)} alt="image utilisateur" /></div></Link>
+
+                        {/* <Link to={`/userprofile/${currentArticle.user.id}`}><div className="user__img"></div></Link> */}
                         <p className="user__name"><Link to={`/userprofile/${currentArticle.user.id}`}>{currentArticle.user.username}</Link></p>
                         <p>{currentArticle.createdAt.substr(0,10)}</p>
                         {token && (
@@ -339,9 +341,18 @@ function PostDetailPage(){
                     </div>
                     <div style={{ whiteSpace: 'pre-line' }} className="post--content">
                         {currentArticle.attachment.length >=1 && (
+                            // <div className="post--content__img">
+                            //     <img src="/assets/imgs/imgsample.PNG" alt="" />
+                            //     <img src="/assets/imgs/imgsample.PNG" alt="" />
+                            // </div>
                             <div className="post--content__img">
-                                <img src="/assets/imgs/imgsample.PNG" alt="" />
-                                <img src="/assets/imgs/imgsample.PNG" alt="" />
+                                {currentArticle.attachment.map((articleImg,index)=>{
+                                    return(
+                                        <img src={currentArticle.attachment[index]} alt="project image" />
+
+                                     ) 
+                                })} 
+                                {/* <img src="/assets/imgs/imgsample.PNG" alt="" /> */}
                             </div>
                         )}
                         {articleText()}
@@ -356,7 +367,7 @@ function PostDetailPage(){
                             <>
                                 <div key={index} className="post--comment__by">
                                     <div>
-                                        <Link to={`/userprofile/${comment.user.id}`}><div className="user__img"></div></Link>
+                                    <Link to={`/userprofile/${comment.user.id}`}><div className="user__img"><img src={comment.user.photo !== null ? (comment.user.photo) : (`http://ec2-${apiUrl}.eu-west-3.compute.amazonaws.com:${apiPort}/userphotos/randomUser.jpg`)} alt="image utilisateur" /></div></Link>
                                     </div>
                                     <div>
                                         <div>

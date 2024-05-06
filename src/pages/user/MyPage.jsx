@@ -106,7 +106,7 @@ function MyPage(){
                             {loginUser.introduction}
                         </p>
                         <div className="mypage--user__img">
-                            <div className='mypage--user__img__photo'></div>
+                        <div className='mypage--user__img__photo'><img src={loginUser.photo !== null ? (loginUser.photo) : (`http://ec2-${apiUrl}.eu-west-3.compute.amazonaws.com:${apiPort}/userphotos/randomUser.jpg`)} alt="image utilisateur" /></div>
                             <div>
                                 <p>discord : {loginUser.discordId}</p>
                                 <Link to='/mypage/edit'>edit my personal infos</Link>

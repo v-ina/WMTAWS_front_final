@@ -1,16 +1,33 @@
 import './Header.scss'
 import { Link, useNavigate } from 'react-router-dom'
-import { useState} from 'react'
+import { useEffect, useState} from 'react'
 import { jwtDecode } from 'jwt-decode'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faBookOpen, faCode, faFootball, faGamepad, faRightToBracket, faUser, faRightFromBracket, faLock } from '@fortawesome/free-solid-svg-icons'
 import { faFilePen, faHeartCirclePlus, faComments, faPaste, faChevronRight } from '@fortawesome/free-solid-svg-icons'
-
+import { apiPort, apiUrl } from '../../utils/apiConfigs'
 
 function Header ({currentPage}){
 
     const navigate = useNavigate();
     const token = localStorage.getItem('jwt')
+
+    ///////////////////////////////////////////////////////////////////////////////////// REQUETE
+    // BDD - récupérer l'utilisateur qui a logge
+    const [loginUser, setLoginuser] = useState(null)
+    const userFetch = async() =>{
+        try{
+            const decodedToken = jwtDecode(token)
+            const responseOfFetch = await fetch(`http://ec2-${apiUrl}.eu-west-3.compute.amazonaws.com:${apiPort}/api/users/${decodedToken.data.userId}`)
+            const responseToJson = await responseOfFetch.json()
+            setLoginuser(responseToJson.data)
+        } catch (error){
+            console.error('eoor fetching user data', error)
+        }
+    }
+    useEffect(()=>{
+        userFetch()
+    },[])
     
 
     ////////////////////////////////////////////////////////////////// MENU BURGER
@@ -60,6 +77,7 @@ function Header ({currentPage}){
         },'100')
     }  
 
+    console.log(loginUser);
 
     return(
     <>
@@ -150,9 +168,9 @@ function Header ({currentPage}){
                 <span className={menuburger? 'checked':''}></span>
             </div>
             <div className="navbar--mobile__sidebar" style={menuburger? {right:0, opacity:1}:{right:'-80%', opacity:0}}>
-                {token ? (
+                {token && loginUser ? (
                     <div className="user__infos">
-                        <Link to='/mypage'><div className="user__img"></div></Link>
+                        <Link to={`/mypage`}><div className="user__img"><img src={loginUser.photo !== null ? (loginUser.photo) : (`http://ec2-${apiUrl}.eu-west-3.compute.amazonaws.com:${apiPort}/userphotos/randomUser.jpg`)} alt="image utilisateur" /></div></Link>
                         <Link to='/mypage'><p className="user__name">{jwtDecode(token).data.username}</p></Link>
                     </div>
                 ):(

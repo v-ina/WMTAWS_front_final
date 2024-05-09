@@ -23,7 +23,7 @@ function Footer (){
                 </li>
             </ul>
             <hr />
-            <p>&copy; copyright 2023 yeonsoo kang &nbsp; | &nbsp; <Link to="">see our polices here</Link> </p>
+            <p>&copy; copyright 2023 <a target="_blank" href="https://yeonsookang.pro/">yeonsoo kang</a> &nbsp; | &nbsp; <Link to="">see our polices here</Link> </p>
         </footer>
     </>
     )

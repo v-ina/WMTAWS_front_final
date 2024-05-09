@@ -3,24 +3,30 @@
     margin: 0;
     box-sizing: border-box;
 }
+
 @font-face {
     font-family: 'roboto';
     src: url(../fonts/Roboto/Roboto-Regular.ttf);
 }
+
 @font-face {
     font-family: 'pacifico';
     src: url(../fonts/Pacifico/Pacifico-Regular.ttf);
 }
+
 @font-face {
     font-family: 'poiret';
     src: url(../fonts/Poiret_One/PoiretOne-Regular.ttf);
 }
+
 body{
     font-family: 'roboto',sans-serif;
 }
+
 li{
     list-style: none;
 }
+
 a{
     text-decoration: none;
     color: black;
@@ -46,8 +52,6 @@ $large : 992px;
 $xlarge : 1300px;
 
 
-
-
 @mixin menuPadding{
     padding-left: 8%;
     padding-right: 8%;
@@ -69,6 +73,7 @@ $xlarge : 1300px;
     font-family: 'poiret';
     font-weight: bold;
     letter-spacing: 2px;
+
     &:hover{
         background-color: $hover-color;
     }
@@ -86,6 +91,7 @@ $xlarge : 1300px;
     font-family: 'poiret';
     font-weight: bold;
     letter-spacing: 2px;
+    
     &:hover{
         background-color: $hover-color;
     }

@@ -54,7 +54,6 @@
         .album{
             width: 500vw;            
             height: 100%;
-            gap: 40px;
             flex-direction: column;
 
             .images{
@@ -72,7 +71,7 @@
                         background-color: $darkerBlue;
                         display: flex;
                         flex-direction: column;
-                        gap: 30px;
+                        gap: 0px;
                         justify-content: center;
                         padding-left: 10%;
                         z-index: 1;
@@ -85,6 +84,7 @@
                             width: 80vw;
                             text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.63);
                             z-index: 1;
+                            margin: 10px 0px 25px 0px;
                         }
 
                         p{
@@ -94,6 +94,10 @@
                             z-index: 1;
                             width: 80vw;
                             word-wrap: break-word
+                        }
+
+                        p:first-child{
+                            font-size: 16px
                         }
 
                         a{
@@ -194,10 +198,24 @@
             gap: 20px;
             text-align: center;
             padding: 30px 20px;
+            transition: 0.5s transform ease-in-out;
 
             .fontawesome {
                 color: $darkerBlue;
                 font-size: 50px;
+            }
+
+            &:hover{
+                transform: translate(-5px, -10px);
+            }
+
+            a{
+                color: $darkerBlue;
+                cursor: pointer;
+
+                &:hover{
+                    font-weight: bold;
+                }
             }
         }
     } 
@@ -333,6 +351,11 @@
 
             .report-system__box__content{
                 box-shadow: 2px 2px 8px grey;
+                transition: 0.5s transform ease-in-out;
+
+                &:hover{
+                    transform: translate(-5px, -10px);
+                }
 
                 .report-system__box--flex{
                     display: flex;
@@ -487,7 +510,7 @@
 // ----------------------------- section - our-team -----------------------------
 .home--main--our-team{
     text-align: center;
-    background-color: #d35d615e;
+    background-color: #d35d6131;
     padding: 50px 10%;
 
     h2{
@@ -502,6 +525,11 @@
 
         .our-team__box{
             margin-top: 30px;
+            transition: 0.5s transform ease-in-out;
+
+            &:hover{
+                transform: translate(-5px, -10px);
+            }
 
             .our-team__box__img{
                 img{

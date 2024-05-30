@@ -4,6 +4,8 @@ import Footer from '../../components/guest/Footer'
 import { useParams } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import { apiPort, apiUrl } from '../../utils/apiConfigs'
+import ChatIndividu from '../../components/ChatIndividu'
+import { jwtDecode } from 'jwt-decode'
 
 
 function OtherUserProfilePage (){
@@ -26,10 +28,50 @@ function OtherUserProfilePage (){
         userFetch()
     },[])
 
+    const [chatOpen , setChatOpen] = useState(false)
+    const [token, setToken] = useState(null)
+    const [currentUserId, setCurrentUserId] = useState(null)
+
+    useEffect(() => {
+        const jwt = localStorage.getItem("jwt")
+        if (jwt) {
+            const decoded = jwtDecode(jwt)
+            setToken(jwt)
+            setCurrentUserId(decoded.data.userId)
+        }
+        userFetch()
+    }, [])
+
+    const handleSendMessageClick = () => {
+        if (!token) {
+            alert('You need to login first!')
+        } else {
+            setChatOpen(!chatOpen)
+        }
+    }
+
+    const closeChatIndividu = () => {
+        setChatOpen(false)
+    }
+
+    const getPhotoUrl = (user) => {
+        return user.photo !== null ? user.photo : `http://ec2-${apiUrl}.eu-west-3.compute.amazonaws.com:${apiPort}/userphotos/randomUser.jpg`
+    }
+    
+
 
     return(
     <>
         <Header />
+        {chatOpen && (
+                <ChatIndividu 
+                    userIdEnConversation={selectedUser.id}
+                    userNameEnConversation={selectedUser.username}
+                    userPhotoEnConversation={getPhotoUrl(selectedUser)}
+                    closeChat={closeChatIndividu}
+                    userIdFromProfil={currentUserId}
+            />
+            )}
         {selectedUser ? (
             <main className="userProfile--main">
                 <h2>Hello,&nbsp; I'm {selectedUser.username} !</h2>
@@ -45,6 +87,8 @@ function OtherUserProfilePage (){
                         </div>
                         <div>
                             <p>discord : {selectedUser.discordId}</p>
+                            <p  onClick={()=>setChatOpen(!chatOpen)}>send a message</p>
+                    
                         </div>
                     </div>
                 </div>

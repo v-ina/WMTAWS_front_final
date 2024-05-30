@@ -77,8 +77,6 @@ function Header ({currentPage}){
         },'100')
     }  
 
-    console.log(loginUser);
-
     return(
     <>
         <header>

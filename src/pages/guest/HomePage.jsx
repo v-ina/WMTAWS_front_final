@@ -5,25 +5,42 @@ import { useEffect, useState } from 'react'
 import { jwtDecode } from 'jwt-decode'
 import { Link } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faBookOpen, faCode, faGamepad, faFootball, faChevronRight, faCircleChevronLeft, faCircleChevronRight, faFlag, faUserTie, faScrewdriverWrench, faSprayCanSparkles } from '@fortawesome/free-solid-svg-icons'
+import { faBookOpen, faCode, faGamepad, faFootball, faChevronRight, faCircleChevronLeft, faCircleChevronRight, faFlag, faUserTie, faScrewdriverWrench, faSprayCanSparkles, faComments } from '@fortawesome/free-solid-svg-icons'
 import {apiUrl, apiPort} from '../../utils/apiConfigs'
+import ChatInbox from '../../components/ChatInbox'
 
 
 function HomePage (){
 
     const [decodedToken, setDecodedToken] = useState(null)
     const [message, setMessage] = useState(null)
+    const [messageAlert, setMessageAlert] = useState(null)
 
 
     ////////////////////////////////////////////////////////////////////////////////// SECURITE
     // securite - verifier le token    
     const token = localStorage.getItem("jwt")
-    useEffect(()=>{
-        if(token !== null){
-            const decoded = jwtDecode(token)
-            setDecodedToken(decoded)
+    useEffect(() => {
+        if (token !== null) {
+            const decoded = jwtDecode(token);
+            setDecodedToken(decoded);
+            checkUnreadMessage(decoded.data.userId);
         }
-    },[token])
+    }, [token]);
+
+    const checkUnreadMessage = async (userId) => {
+        try {
+            // const response = await fetch(`http://localhost:4005/api/message/unread/${userId} `);
+            const response = await fetch(`http://localhost:3333/api/message/unread/3 `);
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            const responseToJson = await response.json();
+            setMessageAlert(responseToJson);
+        } catch (error) {
+            console.error('Error fetching unread messages:', error);
+        }
+    };
 
 
     ////////////////////////////////////////////////////////////////////////////////// REQUETE
@@ -108,13 +125,20 @@ function HomePage (){
         return scrollY > position ? "animated" : "";
     };
 
-    
+    const [chatOpen , setChatOpen] = useState(false)
+
     return(
     <>
         <Header />
 
         <main className="home--main">
-
+            {messageAlert && messageAlert.length >0 && <div className='chat__unread'></div>}
+            <div className='chat__btn'  onClick={()=>setChatOpen(!chatOpen)}>
+                <FontAwesomeIcon className='chat__btn__icon' icon={faComments} />
+            </div>
+            {chatOpen && (
+                <ChatInbox />
+            )}
         {/* ----------------------------- section - banner ----------------------------- */}
             <section className="home--main--banner">
                 <div className='container'> 

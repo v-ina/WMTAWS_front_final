@@ -4,6 +4,42 @@
     @include pagePadding;
     display: flex;
     flex-direction: column;
+
+    .chat__unread{
+        z-index: 9999;
+        position: fixed;
+        bottom: 90px;
+        left: 95px;
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background-color: $themecolorGreen;
+    }
+    
+    .chat__btn{
+        position: fixed;
+        z-index: 9998;
+        bottom: 50px;
+        left: 50px;
+        cursor: pointer;
+        
+        .chat__btn__icon{
+            font-size: 2rem;
+            padding: 20px 15px;
+            color: $themecolorYellow;
+            border-radius: 50%;
+            background-color: white;
+            box-shadow: 2px 2px 8px grey;
+            transition: 0.2s color ease-in-out;
+        }
+        
+        &:hover{
+            .chat__btn__icon{
+                color: white;
+                background-color: $themecolorYellow;
+            }
+        }
+    }
     
     h2{
         margin-bottom: 40px; 

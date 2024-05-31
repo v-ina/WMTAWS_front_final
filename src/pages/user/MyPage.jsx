@@ -7,6 +7,7 @@ import { jwtDecode } from 'jwt-decode'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {faHeartCirclePlus, faComments, faPaste} from '@fortawesome/free-solid-svg-icons'
 import { apiPort, apiUrl } from '../../utils/apiConfigs'
+import ChatInbox from '../../components/ChatInbox'
 
 
 function MyPage(){
@@ -94,12 +95,43 @@ function MyPage(){
          currentUserCommentList = commentList.filter(Comment => Comment.userId === decodedToken.data.userId)
     }
 
+    const [chatOpen , setChatOpen] = useState(false)
+    const [messageAlert, setMessageAlert] = useState(null)
+    const token = localStorage.getItem("jwt")
+
+    useEffect(() => {
+        if (token !== null) {
+            const decoded = jwtDecode(token);
+            checkUnreadMessage(decoded.data.userId);
+        }
+    }, [token]);
+
+    const checkUnreadMessage = async (userId) => {
+        try {
+            const response = await fetch(`http://ec2-${apiUrl}.eu-west-3.compute.amazonaws.com:${apiPort}/api/message/unread/${userId} `);
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            const responseToJson = await response.json();
+            setMessageAlert(responseToJson);
+        } catch (error) {
+            console.error('Error fetching unread messages:', error);
+        }
+    };
+
 
     return(
     <>
         <Header currentPage={"myPage"}/>
             {loginUser && (
                 <main className="mypage--main">
+                    {messageAlert && messageAlert.length >0 && <div className='chat__unread'></div>}
+                <div className='chat__btn'  onClick={()=>setChatOpen(!chatOpen)}>
+                    <FontAwesomeIcon className='chat__btn__icon' icon={faComments} />
+                </div>
+                {chatOpen && (
+                    <ChatInbox onClick={()=>setChatOpen(false)}/>
+                )}
                     <h2>Hello,&nbsp; {loginUser.username} !</h2>
                     <div className="mypage--user__info">
                         <p className="mypage--user__content">

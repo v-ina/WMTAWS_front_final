@@ -30,8 +30,7 @@ function HomePage (){
 
     const checkUnreadMessage = async (userId) => {
         try {
-            // const response = await fetch(`http://localhost:4005/api/message/unread/${userId} `);
-            const response = await fetch(`http://localhost:3333/api/message/unread/3 `);
+            const response = await fetch(`http://ec2-${apiUrl}.eu-west-3.compute.amazonaws.com:${apiPort}/api/message/unread/${userId} `);
             if (!response.ok) {
                 throw new Error(`HTTP error! status: ${response.status}`);
             }
@@ -137,7 +136,7 @@ function HomePage (){
                 <FontAwesomeIcon className='chat__btn__icon' icon={faComments} />
             </div>
             {chatOpen && (
-                <ChatInbox />
+                <ChatInbox onClick={()=>setChatOpen(false)}/>
             )}
         {/* ----------------------------- section - banner ----------------------------- */}
             <section className="home--main--banner">

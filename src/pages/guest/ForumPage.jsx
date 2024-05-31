@@ -4,8 +4,10 @@ import Footer from '../../components/guest/Footer'
 import { Link, useParams } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faImages, faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons'
+import { faImages, faChevronLeft, faChevronRight, faComments } from '@fortawesome/free-solid-svg-icons'
 import { apiPort, apiUrl } from '../../utils/apiConfigs'
+import { jwtDecode } from 'jwt-decode'
+import ChatInbox from '../../components/ChatInbox'
 
 
 function ForumPage(){
@@ -231,12 +233,42 @@ function ForumPage(){
         window.location.reload()
     }
 
+    const [chatOpen , setChatOpen] = useState(false)
+    const [messageAlert, setMessageAlert] = useState(null)
+    const token = localStorage.getItem("jwt")
+    useEffect(() => {
+        if (token !== null) {
+            const decoded = jwtDecode(token);
+            checkUnreadMessage(decoded.data.userId);
+        }
+    }, [token]);
+
+    const checkUnreadMessage = async (userId) => {
+        try {
+            const response = await fetch(`http://ec2-${apiUrl}.eu-west-3.compute.amazonaws.com:${apiPort}/api/message/unread/${userId} `);
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            const responseToJson = await response.json();
+            setMessageAlert(responseToJson);
+        } catch (error) {
+            console.error('Error fetching unread messages:', error);
+        }
+    };
+
 
     return(
     <>
         <Header currentPage={forumCategory}/>
         {currentForumArticle !== null && (
             <main className="forum--main"> 
+                {messageAlert && messageAlert.length >0 && <div className='chat__unread'></div>}
+                <div className='chat__btn'  onClick={()=>setChatOpen(!chatOpen)}>
+                    <FontAwesomeIcon className='chat__btn__icon' icon={faComments} />
+                </div>
+                {chatOpen && (
+                    <ChatInbox onClick={()=>setChatOpen(false)}/>
+                )}
                 {!searchQuery ? (
                     <h2>
                         FORUM - {forumCategory}

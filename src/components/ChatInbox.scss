@@ -8,10 +8,19 @@
     bottom: 0;
     width: 500px;
     height: 90vh;
-    // border: 1px solid blue;
     background-color: #e0e0e0;
     overflow-y: scroll;
     z-index: 9999;
+
+    .chat__inbox__title{
+        font-size: 1.8rem;
+        font-family: 'poiret';
+        font-weight: bold;
+        margin-top: 10px;
+        margin-bottom: 10px;
+        padding-bottom: 20px;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.176);
+    }
 
     &::-webkit-scrollbar {
         width: 5px; 
@@ -30,11 +39,12 @@
         background-color: #555; 
     }
 
-    h2{
-        margin-top: 10px;
-        margin-bottom: 10px;
-        padding-bottom: 20px;
-        border-bottom: 1px solid rgba(0, 0, 0, 0.176);
+    .chat__inbox--close-btn{
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        font-size: 2rem;
+        cursor: pointer;
     }
 
     ul{

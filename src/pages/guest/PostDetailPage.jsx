@@ -5,8 +5,9 @@ import { Link, useNavigate, useParams } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import { jwtDecode } from 'jwt-decode'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faHeart, faChevronRight } from '@fortawesome/free-solid-svg-icons'
+import { faHeart, faChevronRight, faComments } from '@fortawesome/free-solid-svg-icons'
 import { apiPort, apiUrl } from '../../utils/apiConfigs'
+import ChatInbox from '../../components/ChatInbox'
 
 
 function PostDetailPage(){
@@ -148,7 +149,6 @@ function PostDetailPage(){
             articleId : postId
         }
         const commentToJson = JSON.stringify(commentUpdate)
-        console.log('json comment update', commentToJson);
         const updateCommentResponse = await fetch(`http://ec2-${apiUrl}.eu-west-3.compute.amazonaws.com:${apiPort}/api/comments/${commentId}`, {
             method : "PUT",
             headers : {
@@ -284,7 +284,6 @@ function PostDetailPage(){
         const token = localStorage.getItem("jwt")
         const decodedToken = jwtDecode(token)
         const element = []
-        console.log(decodedToken.data);
         if(decodedToken.data.userId === currentArticle.userId || decodedToken.data.role === 1){
             element.push(
                 <div className='post__management'>
@@ -300,11 +299,40 @@ function PostDetailPage(){
         return element
     }
 
+    const [chatOpen , setChatOpen] = useState(false)
+    const [messageAlert, setMessageAlert] = useState(null)
+    useEffect(() => {
+        if (token !== null) {
+            const decoded = jwtDecode(token);
+            checkUnreadMessage(decoded.data.userId);
+        }
+    }, [token]);
+
+    const checkUnreadMessage = async (userId) => {
+        try {
+            const response = await fetch(`http://ec2-${apiUrl}.eu-west-3.compute.amazonaws.com:${apiPort}/api/message/unread/${userId} `);
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            const responseToJson = await response.json();
+            setMessageAlert(responseToJson);
+        } catch (error) {
+            console.error('Error fetching unread messages:', error);
+        }
+    };
+
 
     return(
         <>
             <Header currentPage={forumCategory}/>
             <main className='post--main'>
+                {messageAlert && messageAlert.length >0 && <div className='chat__unread'></div>}
+                <div className='chat__btn'  onClick={()=>setChatOpen(!chatOpen)}>
+                    <FontAwesomeIcon className='chat__btn__icon' icon={faComments} />
+                </div>
+                {chatOpen && (
+                    <ChatInbox onClick={()=>setChatOpen(false)}/>
+                )}
                 {currentForumCategory && (
                     <Link to={`/forum/${currentForumCategory}`}>
                         <h3>forum {currentForumCategory} <FontAwesomeIcon icon={faChevronRight} /> </h3>

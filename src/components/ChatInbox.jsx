@@ -4,10 +4,11 @@ import './ChatInbox.scss'
 import { jwtDecode } from 'jwt-decode'
 import { useNavigate } from 'react-router-dom'
 import {apiUrl, apiPort} from '../utils/apiConfigs'
+import { faXmark } from "@fortawesome/free-solid-svg-icons"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 
-// import {userId} from "../utils/userInfo"
 
-function ChatInbox(){
+function ChatInbox({onClick}){
 
     const navigate = useNavigate();
 
@@ -42,10 +43,6 @@ function ChatInbox(){
         }
     }, [userId,openChatIndividu]);
 
-
-
-
-
     const toggleChatIndividu = (messageId) => {
         setOpenChatIndividu(prevState => ({
             ...prevState,
@@ -59,8 +56,6 @@ function ChatInbox(){
             [messageId]: false
         }));
     };
-
-console.log(inboxMessages, '메세지');
 
 const getPhotoUrl = (message, userId) => {
     const senderPhoto = message.Sender.photo;
@@ -77,7 +72,8 @@ const getPhotoUrl = (message, userId) => {
 
     return (
         <div className="chat__inbox">
-            <h2>Chat inbox</h2>
+            <p className="chat__inbox__title">Chat inbox</p>
+            <FontAwesomeIcon className="chat__inbox--close-btn" onClick={onClick} icon={faXmark} />
             {inboxMessages ? (
                 <ul>
                     {inboxMessages.map((message) => (
@@ -104,7 +100,7 @@ const getPhotoUrl = (message, userId) => {
                     ))}
                 </ul>
             ) : (
-                <p>Loading...</p>
+                <p>You need to Login for this service =)</p>
             )}
         </div>
     )

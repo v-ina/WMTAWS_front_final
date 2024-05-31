@@ -35,7 +35,6 @@ function MyListPage(){
             })
             const responseToJson = await responseOfFetch.json()
             setLikeList(responseToJson.data)
-            console.log('likes',responseToJson);
         })()
     },[]) 
     let currentUserLikeList

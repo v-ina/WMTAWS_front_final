@@ -31,17 +31,14 @@ function AdminUserMangePage(){
         useEffect(() => {
             if (!token) {
                 navigate("/login")
-                console.log('1')
             } else {
                 try {
                     const decodedToken = jwtDecode(token);
                     if (!decodedToken.data || decodedToken.data.role !== 1) {
                         navigate("/")
-                        console.log('2')
                     }
                 } catch (error) {
                     navigate("/login")
-                    console.log('3')
                 }
             }
         }, [])

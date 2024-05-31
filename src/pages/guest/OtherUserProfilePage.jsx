@@ -6,6 +6,8 @@ import { useEffect, useState } from 'react'
 import { apiPort, apiUrl } from '../../utils/apiConfigs'
 import ChatIndividu from '../../components/ChatIndividu'
 import { jwtDecode } from 'jwt-decode'
+import { faComments } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 
 function OtherUserProfilePage (){
@@ -57,13 +59,36 @@ function OtherUserProfilePage (){
     const getPhotoUrl = (user) => {
         return user.photo !== null ? user.photo : `http://ec2-${apiUrl}.eu-west-3.compute.amazonaws.com:${apiPort}/userphotos/randomUser.jpg`
     }
+
+
     
+    const [messageAlert, setMessageAlert] = useState(null)
+    useEffect(() => {
+        if (token !== null) {
+            const decoded = jwtDecode(token);
+            checkUnreadMessage(decoded.data.userId);
+        }
+    }, [token]);
+
+    const checkUnreadMessage = async (userId) => {
+        try {
+            const response = await fetch(`http://ec2-${apiUrl}.eu-west-3.compute.amazonaws.com:${apiPort}/api/message/unread/${userId} `);
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            const responseToJson = await response.json();
+            setMessageAlert(responseToJson);
+        } catch (error) {
+            console.error('Error fetching unread messages:', error);
+        }
+    };
 
 
     return(
     <>
         <Header />
-        {chatOpen && (
+
+        {chatOpen && token && (
                 <ChatIndividu 
                     userIdEnConversation={selectedUser.id}
                     userNameEnConversation={selectedUser.username}
@@ -74,6 +99,12 @@ function OtherUserProfilePage (){
             )}
         {selectedUser ? (
             <main className="userProfile--main">
+                {messageAlert && messageAlert.length >0 && <div className='chat__unread'></div>}
+                {token && (
+                    <div className='chat__btn'  onClick={()=>setChatOpen(!chatOpen)}>
+                        <FontAwesomeIcon className='chat__btn__icon' icon={faComments} />
+                    </div>
+                )}
                 <h2>Hello,&nbsp; I'm {selectedUser.username} !</h2>
                 <div className="mypage--user__info">
                     <p className="mypage--user__content">
@@ -87,7 +118,7 @@ function OtherUserProfilePage (){
                         </div>
                         <div>
                             <p>discord : {selectedUser.discordId}</p>
-                            <p  onClick={()=>setChatOpen(!chatOpen)}>send a message</p>
+                            <p className='message__btn--send' onClick={handleSendMessageClick}>send a message</p>
                     
                         </div>
                     </div>

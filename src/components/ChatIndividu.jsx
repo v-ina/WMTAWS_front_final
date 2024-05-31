@@ -19,10 +19,8 @@ function ChatIndividu({ userIdEnConversation, closeChat, userNameEnConversation,
         }
     }, []);
 
-    console.log(messageWithUser, '메세지 윗 유저');
-
     const messageWithUserFetch = async() => {
-        const response = await fetch(`http://ec2-${apiUrl}.eu-west-3.compute.amazonaws.com:${apiPort}/api/message/all/2?receiverId=${userId}&senderId=${userIdEnConversation}`);
+        const response = await fetch(`http://ec2-${apiUrl}.eu-west-3.compute.amazonaws.com:${apiPort}/api/message/all/${userId}?receiverId=${userId}&senderId=${userIdEnConversation}`);
         if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`);
         }
@@ -47,7 +45,6 @@ function ChatIndividu({ userIdEnConversation, closeChat, userNameEnConversation,
             send_userId : sendUserId,
             receive_userId : receiveUserId
         }
-        console.log(createMessage, '프롬프로필');
         try {
             const response = await fetch(`http://ec2-${apiUrl}.eu-west-3.compute.amazonaws.com:${apiPort}/api/message`, {
                 method:"POST",

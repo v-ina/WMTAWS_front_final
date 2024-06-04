@@ -58,14 +58,16 @@ function LoginPage (){
         <Header currentPage={"loginPage"} />
         <main className='login--main'>
             <form onSubmit={handleLogin} action="">
-                <input type="text" placeholder="username" />
-
-                <label htmlFor="">
-                    <FontAwesomeIcon onClick={maskingPasswordToggle} className= {masking? "fontawesomeeye" : "fontawesomeeye masking"} icon={faEyeSlash} />
-                    <input type={masking ? "password" : "text"} placeholder="password" />
+                {message && <p className='loginFail'>*{message}</p>}
+                <label htmlFor="username">
+                    <input type="text" id='username' placeholder="username" />
                 </label>
 
-                {message && <p className='loginFail'>*{message}</p>}
+                <label htmlFor="password">
+                    <FontAwesomeIcon onClick={maskingPasswordToggle} className= {masking? "fontawesomeeye" : "fontawesomeeye masking"} icon={faEyeSlash} />
+                    <input type={masking ? "password" : "text"} id='password' placeholder="password" />
+                </label>
+
                 <input type='submit' className='btn__connect' value="Connect"/>
                 
                 <Link to="/findaccound">forgot your password or id ?</Link>

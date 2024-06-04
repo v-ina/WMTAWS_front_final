@@ -37,9 +37,9 @@ function CreatPostPage(){
             formData.append("categoryId", JSON.stringify(categoryId))
             formData.append("numOfMember", JSON.stringify(numOfMember))
             formData.append("text", JSON.stringify(text))
-            formData.append("attachment", event.target.attachment.files[0])
-            formData.append("attachment", event.target.attachment.files[1])
-            formData.append("attachment", event.target.attachment.files[2])
+            for(let i = 0; i < event.target.attachment.files.length; i++) {
+                formData.append("attachment", event.target.attachment.files[i])
+            }
             if(event.target.attachment.files[3]){
                 return setMessage('only 3 files acceptable.')
             }
@@ -53,7 +53,7 @@ function CreatPostPage(){
         const createArticlesResponse = await fetch(`http://ec2-${apiUrl}.eu-west-3.compute.amazonaws.com:${apiPort}/api/articles`, {
             method : "POST",
             headers : {
-                Authorization : `Barer ${token}`
+                Authorization : `Bearer ${token}`
             },
             body : formData
         })

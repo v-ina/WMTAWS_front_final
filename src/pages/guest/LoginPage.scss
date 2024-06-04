@@ -14,7 +14,8 @@
         input,Link,a{
             display: block;
         }
-        input:nth-child(1){
+
+        input:nth-child(2){
             margin: 0 auto;
             height: 30px;
             font-size: 15px;
@@ -23,6 +24,7 @@
 
         label{
             position: relative;
+
 
             .fontawesomeeye{
                 position: absolute;
@@ -37,7 +39,7 @@
                 height: 30px;
                 font-size: 15px;
                 padding-left: 10px;
-                margin: 15px;
+                margin: 10px;
             }
         }
 
@@ -47,6 +49,7 @@
         .btn__connect{
             @include secondarybutton($themecolorGreen, $darkerGreen);
             margin-bottom: 15px;
+            margin-top: 15px
         }
         .btn__join{
             @include secondarybutton($themecolorYellow, $darkerYellow);

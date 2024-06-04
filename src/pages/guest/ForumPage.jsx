@@ -139,7 +139,7 @@ function ForumPage(){
                         tableRows.push(
                             <tr className='table__postcontent'>                 
                                 <td>
-                                    <Link to={`/userprofile/${article.user.id}`}>
+                                    <Link to={`/userprofile/${article.user.id}`} title='more user info'>
                                         {article.user.username}
                                     </Link>
                                 </td>

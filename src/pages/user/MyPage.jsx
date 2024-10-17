@@ -28,7 +28,7 @@ function MyPage(){
         try{
             const token = localStorage.getItem("jwt") 
             const decodedToken = jwtDecode(token)
-            const responseOfFetch = await fetch(`https.we-make-team.click/api/users/${decodedToken.data.userId}`)
+            const responseOfFetch = await fetch(`https://https.we-make-team.click/api/users/${decodedToken.data.userId}`)
             const responseToJson = await responseOfFetch.json()
             setLoginuser(responseToJson.data)
         } catch (error){
@@ -48,7 +48,7 @@ function MyPage(){
     const [likeList, setLikeList] = useState(null)
     const handleClickLikeList = async() =>{
         const token = localStorage.getItem("jwt") 
-        const responseOfFetch = await fetch(`https.we-make-team.click/api/likes`, {
+        const responseOfFetch = await fetch(`https://https.we-make-team.click/api/likes`, {
             method : "GET",
             headers : {
                 Authorization : `Barer ${token}`
@@ -68,7 +68,7 @@ function MyPage(){
     // BDD - récupérer tous les Articles d'utilisateur    
     const [articeList, setArticleList] = useState(null)
     const handleClickArticleList = async() =>{
-        const responseOfFetch = await fetch(`https.we-make-team.click/api/articles`)
+        const responseOfFetch = await fetch(`https://https.we-make-team.click/api/articles`)
         const responseToJson = await responseOfFetch.json()
         setArticleList(responseToJson.data)
         setCurrentList('article')
@@ -83,7 +83,7 @@ function MyPage(){
     // BDD - récupérer tous les commentraires d'utilisateur 
     const [commentList, setCommentList] = useState(null)
     const handleClickCommentList = async() => {
-        const responseOfFetch = await fetch(`https.we-make-team.click/api/comments`)
+        const responseOfFetch = await fetch(`https://https.we-make-team.click/api/comments`)
         const responseToJson = await responseOfFetch.json()
         setCommentList(responseToJson.data)
         setCurrentList('comment')
@@ -108,7 +108,7 @@ function MyPage(){
 
     const checkUnreadMessage = async (userId) => {
         try {
-            const response = await fetch(`https.we-make-team.click/api/message/unread/${userId} `);
+            const response = await fetch(`https://https.we-make-team.click/api/message/unread/${userId} `);
             if (!response.ok) {
                 throw new Error(`HTTP error! status: ${response.status}`);
             }
@@ -139,7 +139,7 @@ function MyPage(){
                         </p>
                         <div className="mypage--user__img">
                             <div className='mypage--user__img__photo'>
-                                <img src={loginUser.photo !== null ? (loginUser.photo) : (`https.we-make-team.click/userphotos/randomUser.jpg`)} alt="image utilisateur" />
+                                <img src={loginUser.photo !== null ? (loginUser.photo) : (`https://https.we-make-team.click/userphotos/randomUser.jpg`)} alt="image utilisateur" />
                             </div>
                             <div>
                                 <p>discord : {loginUser.discordId}</p>

@@ -30,7 +30,7 @@ function HomePage (){
 
     const checkUnreadMessage = async (userId) => {
         try {
-            const response = await fetch(`https.we-make-team.click/api/message/unread/${userId} `);
+            const response = await fetch(`https://https.we-make-team.click/api/message/unread/${userId} `);
             if (!response.ok) {
                 throw new Error(`HTTP error! status: ${response.status}`);
             }
@@ -52,7 +52,7 @@ function HomePage (){
             userId : decodedToken.data.userId, 
         }
         const suggestionToJson = JSON.stringify(createSuggestion)
-        const createCommentResponse = await fetch(`https.we-make-team.click/api/suggestions`, {
+        const createCommentResponse = await fetch(`https://https.we-make-team.click/api/suggestions`, {
             method : "POST",
             headers : {
                 "Content-Type" : "application/json",

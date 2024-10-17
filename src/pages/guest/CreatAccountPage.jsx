@@ -49,7 +49,7 @@ function CreatAccountPage(){
             birthdate : birthdate
         }
         const userCreateToJson = JSON.stringify(userToCreate)
-        const createUserResponse = await fetch(`https.we-make-team.click/api/users`, {
+        const createUserResponse = await fetch(`https://https.we-make-team.click/api/users`, {
             method : "POST",
             headers : {
                 "Content-Type" : "application/json"

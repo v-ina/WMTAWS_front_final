@@ -20,7 +20,7 @@ function ChatIndividu({ userIdEnConversation, closeChat, userNameEnConversation,
     }, []);
 
     const messageWithUserFetch = async() => {
-        const response = await fetch(`http://ec2-${apiUrl}.eu-west-3.compute.amazonaws.com:${apiPort}/api/message/all/${userId}?receiverId=${userId}&senderId=${userIdEnConversation}`);
+        const response = await fetch(`https.we-make-team.click/api/message/all/${userId}?receiverId=${userId}&senderId=${userIdEnConversation}`);
         if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`);
         }
@@ -46,7 +46,7 @@ function ChatIndividu({ userIdEnConversation, closeChat, userNameEnConversation,
             receive_userId : receiveUserId
         }
         try {
-            const response = await fetch(`http://ec2-${apiUrl}.eu-west-3.compute.amazonaws.com:${apiPort}/api/message`, {
+            const response = await fetch(`https.we-make-team.click/api/message`, {
                 method:"POST",
                 headers : {"Content-type" : "application/json"}, 
                 body: JSON.stringify(createMessage) 

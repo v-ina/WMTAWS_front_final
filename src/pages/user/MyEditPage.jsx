@@ -29,7 +29,7 @@ function MyEditPage(){
         try{
             const token = localStorage.getItem("jwt") 
             const decodedToken = jwtDecode(token)
-            const responseOfFetch = await fetch(`http://ec2-${apiUrl}.eu-west-3.compute.amazonaws.com:${apiPort}/api/users/${decodedToken.data.userId}`)
+            const responseOfFetch = await fetch(`https.we-make-team.click/api/users/${decodedToken.data.userId}`)
             const responseToJson = await responseOfFetch.json()
             setLoginuser(responseToJson.data)
         } catch (error){
@@ -91,7 +91,7 @@ function MyEditPage(){
         }
         
         const token = localStorage.getItem("jwt") 
-        const EditUserResponse = await fetch(`http://ec2-${apiUrl}.eu-west-3.compute.amazonaws.com:${apiPort}/api/users/${loginUser.id}`, {
+        const EditUserResponse = await fetch(`https.we-make-team.click/api/users/${loginUser.id}`, {
             method : "PUT",
             headers : {
                 Authorization : `Barer ${token}`
@@ -110,7 +110,7 @@ function MyEditPage(){
         if(window.confirm(`are you sure that you want to delete your account?`)){
             alert(`your informations has been succesfuly deleted`)
             const token = localStorage.getItem('jwt')
-            await fetch(`http://ec2-${apiUrl}.eu-west-3.compute.amazonaws.com:${apiPort}/api/users/${userId}`, {method : "DELETE", headers : {'Authorization': `Bearer ${token}`}})
+            await fetch(`https.we-make-team.click/api/users/${userId}`, {method : "DELETE", headers : {'Authorization': `Bearer ${token}`}})
             setTimeout(()=>{
                 localStorage.removeItem("jwt")
             },'100')
@@ -131,7 +131,7 @@ function MyEditPage(){
         <Header />
             {loginUser && (
                 <main className="mypageEdit--main">
-                    <div className='mypageEdit--user__img'><img src={loginUser.photo !== null ? (loginUser.photo) : (`http://ec2-${apiUrl}.eu-west-3.compute.amazonaws.com:${apiPort}/userphotos/randomUser.jpg`)} alt="image utilisateur" /></div>
+                    <div className='mypageEdit--user__img'><img src={loginUser.photo !== null ? (loginUser.photo) : (`https.we-make-team.click/userphotos/randomUser.jpg`)} alt="image utilisateur" /></div>
 
                     <form action="" onSubmit={handleSubmitEditAccount}>
                         <input type="file" id="file" accept=".jpg, .jpeg, .png" name='photo' className='btn__img' />

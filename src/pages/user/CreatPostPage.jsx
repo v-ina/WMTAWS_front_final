@@ -50,7 +50,7 @@ function CreatPostPage(){
             formData.append("text", JSON.stringify(text))
         }
 
-        const createArticlesResponse = await fetch(`http://ec2-${apiUrl}.eu-west-3.compute.amazonaws.com:${apiPort}/api/articles`, {
+        const createArticlesResponse = await fetch(`https.we-make-team.click/api/articles`, {
             method : "POST",
             headers : {
                 Authorization : `Bearer ${token}`

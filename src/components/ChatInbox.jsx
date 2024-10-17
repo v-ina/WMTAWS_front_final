@@ -27,7 +27,7 @@ function ChatInbox({onClick}){
     useEffect(() => {
         const fetchInboxMessages = async () => {
             try {
-                const response = await fetch(`http://ec2-${apiUrl}.eu-west-3.compute.amazonaws.com:${apiPort}/api/message/last-messages?receiverId=${userId}`);
+                const response = await fetch(`https.we-make-team.click/api/message/last-messages?receiverId=${userId}`);
                 if (!response.ok) {
                     throw new Error(`HTTP error! status: ${response.status}`);
                 }
@@ -60,7 +60,7 @@ function ChatInbox({onClick}){
 const getPhotoUrl = (message, userId) => {
     const senderPhoto = message.Sender.photo;
     const receiverPhoto = message.Receiver.photo;
-    const defaultPhotoUrl = `http://ec2-${apiUrl}.eu-west-3.compute.amazonaws.com:${apiPort}/userphotos/randomUser.jpg`;
+    const defaultPhotoUrl = `https.we-make-team.click/userphotos/randomUser.jpg`;
 
     if (message.Sender.id === userId) {
         return receiverPhoto !== null ? receiverPhoto : defaultPhotoUrl;

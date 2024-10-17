@@ -34,7 +34,7 @@ function ForumPage(){
     // BDD - récupérer nom de categorie
     useEffect(()=>{
         (async()=>{
-            const responseOfFetch = await fetch(`http://ec2-${apiUrl}.eu-west-3.compute.amazonaws.com:${apiPort}/api/categories/${forumCategory}`)
+            const responseOfFetch = await fetch(`https.we-make-team.click/api/categories/${forumCategory}`)
             const responseToJson = await responseOfFetch.json()
             return setCurrentCategory(responseToJson.data[0])
         })()        
@@ -43,7 +43,7 @@ function ForumPage(){
     // BDD - récupérer les articles
     useEffect(()=>{
         (async()=>{
-            const responseOfFetch = await fetch(`http://ec2-${apiUrl}.eu-west-3.compute.amazonaws.com:${apiPort}/api/articles`)
+            const responseOfFetch = await fetch(`https.we-make-team.click/api/articles`)
             const responseToJson = await responseOfFetch.json()
             return setArticles(responseToJson.data)  
         })()
@@ -215,7 +215,7 @@ function ForumPage(){
     const handleSearchQuery = async(event, keyword) => {
         event.preventDefault()
         if(keyword.trim().length>0){
-            const responseOfFetch = await fetch(`http://ec2-${apiUrl}.eu-west-3.compute.amazonaws.com:${apiPort}/api/articles?search=${keyword}`)
+            const responseOfFetch = await fetch(`https.we-make-team.click/api/articles?search=${keyword}`)
             const responseToJson = await responseOfFetch.json()
             const sortedArticles = responseToJson.data.sort((a,b) => {return new Date(b.createdAt) - new Date(a.createdAt)})
             setCurrentForumArticle(sortedArticles)
@@ -245,7 +245,7 @@ function ForumPage(){
 
     const checkUnreadMessage = async (userId) => {
         try {
-            const response = await fetch(`http://ec2-${apiUrl}.eu-west-3.compute.amazonaws.com:${apiPort}/api/message/unread/${userId} `);
+            const response = await fetch(`https.we-make-team.click/api/message/unread/${userId} `);
             if (!response.ok) {
                 throw new Error(`HTTP error! status: ${response.status}`);
             }

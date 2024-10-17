@@ -23,7 +23,7 @@ function LoginPage (){
         const loginData = {username, password}
         const loginDataJson = JSON.stringify(loginData)
 
-        const responseAfterFetch = await fetch(`http://ec2-${apiUrl}.eu-west-3.compute.amazonaws.com:${apiPort}/api/users/login`, {method : "POST", headers : {"Content-type" : "application/json"}, body : loginDataJson})
+        const responseAfterFetch = await fetch(`https.we-make-team.click/api/users/login`, {method : "POST", headers : {"Content-type" : "application/json"}, body : loginDataJson})
         const responseToJson = await responseAfterFetch.json()
         const token = responseToJson.token
 

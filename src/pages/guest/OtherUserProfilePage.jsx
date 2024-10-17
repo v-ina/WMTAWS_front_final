@@ -19,7 +19,7 @@ function OtherUserProfilePage (){
     // BDD - récupérer l'info d'utilisateur
     const userFetch = async() =>{
         try{
-            const responseOfFetch = await fetch(`https://https.we-make-team.click/api/users/${userId}`)
+            const responseOfFetch = await fetch(`https://we-make-team.click/api/users/${userId}`)
             const responseToJson = await responseOfFetch.json()
             setSelectedUser(responseToJson.data)
         } catch (error){
@@ -57,7 +57,7 @@ function OtherUserProfilePage (){
     }
 
     const getPhotoUrl = (user) => {
-        return user.photo !== null ? user.photo : `https://https.we-make-team.click/userphotos/randomUser.jpg`
+        return user.photo !== null ? user.photo : `https://we-make-team.click/userphotos/randomUser.jpg`
     }
 
 
@@ -72,7 +72,7 @@ function OtherUserProfilePage (){
 
     const checkUnreadMessage = async (userId) => {
         try {
-            const response = await fetch(`https://https.we-make-team.click/api/message/unread/${userId} `);
+            const response = await fetch(`https://we-make-team.click/api/message/unread/${userId} `);
             if (!response.ok) {
                 throw new Error(`HTTP error! status: ${response.status}`);
             }
@@ -114,7 +114,7 @@ function OtherUserProfilePage (){
                     <div className="mypage--user__img">
 
                         <div className='mypage--user__img__photo'>
-                            <img src={selectedUser.photo !== null ? (selectedUser.photo) : (`https://https.we-make-team.click/userphotos/randomUser.jpg`)} alt="image utilisateur" />
+                            <img src={selectedUser.photo !== null ? (selectedUser.photo) : (`https://we-make-team.click/userphotos/randomUser.jpg`)} alt="image utilisateur" />
                         </div>
                         <div>
                             <p>discord : {selectedUser.discordId}</p>

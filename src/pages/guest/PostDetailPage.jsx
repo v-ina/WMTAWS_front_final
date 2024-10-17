@@ -32,7 +32,7 @@ function PostDetailPage(){
     const [message, setMessage] = useState(null)
     useEffect(()=>{
         (async()=>{
-            const responseOfFetch = await fetch(`https://https.we-make-team.click/api/articles/${postId}`)
+            const responseOfFetch = await fetch(`https://we-make-team.click/api/articles/${postId}`)
             const responseToJson = await responseOfFetch.json()
             // const postText = responseToJson.data.text.replace(/\r\n|\n|\r/g,'<br/>')
             
@@ -78,7 +78,7 @@ function PostDetailPage(){
     // BDD - ajoute like
     const postLikeRoute = async() => {
         const token = localStorage.getItem("jwt")
-        const responseOfFetch = await fetch(`https://https.we-make-team.click/api/likes/${postId}`,{
+        const responseOfFetch = await fetch(`https://we-make-team.click/api/likes/${postId}`,{
             method : "POST",
             headers : {
                 Authorization : `Barer ${token}`
@@ -89,7 +89,7 @@ function PostDetailPage(){
     // BDD - supprimer like
     const deleteLikeRoute = async() => {
         const token = localStorage.getItem("jwt")
-        const responseOfFetch = await fetch(`https://https.we-make-team.click/api/likes/${postId}`,{
+        const responseOfFetch = await fetch(`https://we-make-team.click/api/likes/${postId}`,{
             method : "DELETE",
             headers : {
                 Authorization : `Barer ${token}`
@@ -120,7 +120,7 @@ function PostDetailPage(){
                 articleId : postId
             }
             const commentToJson = JSON.stringify(commentCreate)
-            const createCommentResponse = await fetch(`https://https.we-make-team.click/api/comments`, {
+            const createCommentResponse = await fetch(`https://we-make-team.click/api/comments`, {
                 method : "POST",
                 headers : {
                     "Content-Type" : "application/json",
@@ -149,7 +149,7 @@ function PostDetailPage(){
             articleId : postId
         }
         const commentToJson = JSON.stringify(commentUpdate)
-        const updateCommentResponse = await fetch(`https://https.we-make-team.click/api/comments/${commentId}`, {
+        const updateCommentResponse = await fetch(`https://we-make-team.click/api/comments/${commentId}`, {
             method : "PUT",
             headers : {
                 "Content-Type" : "application/json",
@@ -171,7 +171,7 @@ function PostDetailPage(){
         const token = localStorage.getItem("jwt")
         if(window.confirm(`do you want to delete this comment?`)){
             alert(`this comment has been succesfuly deleted`)
-            const deleteComment = await fetch(`https://https.we-make-team.click/api/comments/${commentId}`, {
+            const deleteComment = await fetch(`https://we-make-team.click/api/comments/${commentId}`, {
                 method : "DELETE",
                 headers : {
                     Authorization : `Barer ${token}`
@@ -188,7 +188,7 @@ function PostDetailPage(){
         const token = localStorage.getItem("jwt")
         if(window.confirm(`do you want to report this comment?`)){
             alert(`this comment has been succesfuly reported`)
-            const createReportComment = await fetch(`https://https.we-make-team.click/api/reports/reportComment/${commentId}`, {
+            const createReportComment = await fetch(`https://we-make-team.click/api/reports/reportComment/${commentId}`, {
                 method : "POST",
                 headers : {
                     Authorization : `Barer ${token}`
@@ -215,7 +215,7 @@ function PostDetailPage(){
         const token = localStorage.getItem("jwt")
         if(window.confirm(`do you want to delete this article?`)){
             alert(`this article has been succesfuly deleted`)
-            const deleteArticle = await fetch(`https://https.we-make-team.click/api/articles/${currentArticle.id}`, {
+            const deleteArticle = await fetch(`https://we-make-team.click/api/articles/${currentArticle.id}`, {
                 method : "DELETE",
                 headers : {
                     Authorization : `Bearer ${token}`
@@ -233,7 +233,7 @@ function PostDetailPage(){
         const token = localStorage.getItem("jwt")
         if(window.confirm(`do you want to report this article?`)){
             alert(`this article has been succesfuly reported`)
-            const createReportArticle = await fetch(`https://https.we-make-team.click/api/reports/reportArticle/${articleId}`, {
+            const createReportArticle = await fetch(`https://we-make-team.click/api/reports/reportArticle/${articleId}`, {
                 method : "POST",
                 headers : {
                     Authorization : `Barer ${token}`
@@ -310,7 +310,7 @@ function PostDetailPage(){
 
     const checkUnreadMessage = async (userId) => {
         try {
-            const response = await fetch(`https://https.we-make-team.click/api/message/unread/${userId} `);
+            const response = await fetch(`https://we-make-team.click/api/message/unread/${userId} `);
             if (!response.ok) {
                 throw new Error(`HTTP error! status: ${response.status}`);
             }
@@ -356,7 +356,7 @@ function PostDetailPage(){
 
                     </div>
                     <div className="post--user__infos">
-                    <Link to={`/userprofile/${currentArticle.user.id}`}><div className="user__img"><img src={currentArticle.user.photo !== null ? (currentArticle.user.photo) : (`https://https.we-make-team.click/userphotos/randomUser.jpg`)} alt="image utilisateur" /></div></Link>
+                    <Link to={`/userprofile/${currentArticle.user.id}`}><div className="user__img"><img src={currentArticle.user.photo !== null ? (currentArticle.user.photo) : (`https://we-make-team.click/userphotos/randomUser.jpg`)} alt="image utilisateur" /></div></Link>
 
                         {/* <Link to={`/userprofile/${currentArticle.user.id}`}><div className="user__img"></div></Link> */}
                         <p className="user__name"><Link to={`/userprofile/${currentArticle.user.id}`}>{currentArticle.user.username}</Link></p>
@@ -395,7 +395,7 @@ function PostDetailPage(){
                             <>
                                 <div key={index} className="post--comment__by">
                                     <div>
-                                    <Link to={`/userprofile/${comment.user.id}`}><div className="user__img"><img src={comment.user.photo !== null ? (comment.user.photo) : (`https://https.we-make-team.click/userphotos/randomUser.jpg`)} alt="image utilisateur" /></div></Link>
+                                    <Link to={`/userprofile/${comment.user.id}`}><div className="user__img"><img src={comment.user.photo !== null ? (comment.user.photo) : (`https://we-make-team.click/userphotos/randomUser.jpg`)} alt="image utilisateur" /></div></Link>
                                     </div>
                                     <div>
                                         <div>

@@ -18,7 +18,7 @@ function Header ({currentPage}){
     const userFetch = async() =>{
         try{
             const decodedToken = jwtDecode(token)
-            const responseOfFetch = await fetch(`https://https.we-make-team.click/api/users/${decodedToken.data.userId}`)
+            const responseOfFetch = await fetch(`https://we-make-team.click/api/users/${decodedToken.data.userId}`)
             const responseToJson = await responseOfFetch.json()
             setLoginuser(responseToJson.data)
         } catch (error){
@@ -168,7 +168,7 @@ function Header ({currentPage}){
             <div className="navbar--mobile__sidebar" style={menuburger? {right:0, opacity:1}:{right:'-80%', opacity:0}}>
                 {token && loginUser ? (
                     <div className="user__infos">
-                        <Link to={`/mypage`}><div className="user__img"><img src={loginUser.photo !== null ? (loginUser.photo) : (`https://https.we-make-team.click/userphotos/randomUser.jpg`)} alt="image utilisateur" /></div></Link>
+                        <Link to={`/mypage`}><div className="user__img"><img src={loginUser.photo !== null ? (loginUser.photo) : (`https://we-make-team.click/userphotos/randomUser.jpg`)} alt="image utilisateur" /></div></Link>
                         <Link to='/mypage'><p className="user__name">{jwtDecode(token).data.username}</p></Link>
                     </div>
                 ):(

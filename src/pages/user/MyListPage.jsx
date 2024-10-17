@@ -27,7 +27,7 @@ function MyListPage(){
     useEffect(()=>{
         (async()=>{
             const token = localStorage.getItem("jwt") 
-            const responseOfFetch = await fetch(`https://https.we-make-team.click/api/likes`, {
+            const responseOfFetch = await fetch(`https://we-make-team.click/api/likes`, {
                 method : "GET",
                 headers : {
                     Authorization : `Barer ${token}`
@@ -48,7 +48,7 @@ function MyListPage(){
     const [articeList, setArticleList] = useState(null)
     useEffect(()=>{
         (async()=>{
-            const responseOfFetch = await fetch(`https://https.we-make-team.click/api/articles`)
+            const responseOfFetch = await fetch(`https://we-make-team.click/api/articles`)
             const responseToJson = await responseOfFetch.json()
             setArticleList(responseToJson.data)
         })()
@@ -64,7 +64,7 @@ function MyListPage(){
     const [commentList, setCommentList] = useState(null)
     useEffect(()=>{
         (async()=>{
-            const responseOfFetch = await fetch(`https://https.we-make-team.click/api/comments`)
+            const responseOfFetch = await fetch(`https://we-make-team.click/api/comments`)
             const responseToJson = await responseOfFetch.json()
             setCommentList(responseToJson.data)
         })()

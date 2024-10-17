@@ -36,7 +36,7 @@ function AdminSuggestionPage(){
     const fetchSuggestions = async() => {
         const token = localStorage.getItem('jwt')
         if(token !== null){
-            const responseAfterFetch = await fetch(`https://https.we-make-team.click/api/suggestions`, {method : "GET", headers : {'Authorization': `Bearer ${token}`}})
+            const responseAfterFetch = await fetch(`https://we-make-team.click/api/suggestions`, {method : "GET", headers : {'Authorization': `Bearer ${token}`}})
             const responseToJson = await responseAfterFetch.json()
             setSuggestions(responseToJson.data)
         }
@@ -50,7 +50,7 @@ function AdminSuggestionPage(){
         if(window.confirm(`are you sure that want to delete this suggestion?`)){
             alert(`suggestion id n°${suggestionId} has been succesfuly deleted`)
             const token = localStorage.getItem('jwt')
-            await fetch(`https://https.we-make-team.click/api/suggestions/${suggestionId}`, {method : "DELETE", headers : {'Authorization': `Bearer ${token}`}})
+            await fetch(`https://we-make-team.click/api/suggestions/${suggestionId}`, {method : "DELETE", headers : {'Authorization': `Bearer ${token}`}})
             fetchSuggestions()
         } else {
             alert('your require was canceled')

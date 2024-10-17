@@ -23,7 +23,7 @@ function FindAccountPage(){
             birthdate : birthdate
         }
         const userFindToJson = JSON.stringify(userToFind)
-        const findUserResponse = await fetch(`https://https.we-make-team.click/api/users/${email}/${firstname}/${birthdate}`)
+        const findUserResponse = await fetch(`https://we-make-team.click/api/users/${email}/${firstname}/${birthdate}`)
         if(findUserResponse.status === 200 || findUserResponse.status === 204 || findUserResponse.status === 304 ) {
             const responseToJson = await findUserResponse.json()
             setIdMessage(`your id is : ${responseToJson.data.username}`)
@@ -47,7 +47,7 @@ function FindAccountPage(){
             birthdate : birthdate
         }
         const userFindToJson = JSON.stringify(userToFind)
-        const findUserResponse = await fetch(`https://https.we-make-team.click/api/users/${username}/${email}/${firstname}/${birthdate}`, {
+        const findUserResponse = await fetch(`https://we-make-team.click/api/users/${username}/${email}/${firstname}/${birthdate}`, {
             method : "POST", headers : {"Content-type" : "application/json"}, body : userFindToJson
             })
         if(findUserResponse.status === 200 || findUserResponse.status === 204 || findUserResponse.status === 304 ) {

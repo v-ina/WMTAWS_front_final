@@ -33,7 +33,7 @@ function AdminReportPage(){
     const fetchReports = async() => {
         const token = localStorage.getItem('jwt')
         if(token){
-            const responseAfterFetch = await fetch(`https://https.we-make-team.click/api/reports`, {method : "GET", headers : {'Authorization': `Bearer ${token}`}})
+            const responseAfterFetch = await fetch(`https://we-make-team.click/api/reports`, {method : "GET", headers : {'Authorization': `Bearer ${token}`}})
             const responseToJson = await responseAfterFetch.json()
             setReports(responseToJson.data)
         }
@@ -46,7 +46,7 @@ function AdminReportPage(){
     // BDD - supprimer un rapport
     const handleIgnoreReports = async(event, reportId) => {
         const token = localStorage.getItem('jwt')
-        await fetch(`https://https.we-make-team.click/api/reports/${reportId}`, {method : "DELETE", headers : {'Authorization': `Bearer ${token}`}})
+        await fetch(`https://we-make-team.click/api/reports/${reportId}`, {method : "DELETE", headers : {'Authorization': `Bearer ${token}`}})
         fetchReports()
     }
 
@@ -55,7 +55,7 @@ function AdminReportPage(){
         if(window.confirm(`are you sure that want to delete this reported article?`)){
             alert(`article id n°${articleId} has been succesfuly deleted`)
             const token = localStorage.getItem('jwt')
-            await fetch(`https://https.we-make-team.click/api/articles/${articleId}`, {method : "DELETE", headers : {'Authorization': `Bearer ${token}`}})
+            await fetch(`https://we-make-team.click/api/articles/${articleId}`, {method : "DELETE", headers : {'Authorization': `Bearer ${token}`}})
             handleIgnoreReports(event, reportId)
             fetchReports()
         } else {
@@ -68,7 +68,7 @@ function AdminReportPage(){
         if(window.confirm(`are you sure that want to delete this reported comment?`)){
             alert(`comment id n°${commentId} has been succesfuly deleted`)
             const token = localStorage.getItem('jwt')
-            await fetch(`https://https.we-make-team.click/api/comments/${commentId}`, {method : "DELETE", headers : {'Authorization': `Bearer ${token}`}})
+            await fetch(`https://we-make-team.click/api/comments/${commentId}`, {method : "DELETE", headers : {'Authorization': `Bearer ${token}`}})
             handleIgnoreReports(event, reportId)
             fetchReports()
         } else {

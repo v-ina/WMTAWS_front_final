@@ -20,7 +20,7 @@ function PostEditPage(){
     // BDD - récupérer l'article  
     useEffect(()=>{
         (async()=>{
-            const responseOfFetch = await fetch(`https://https.we-make-team.click/api/articles/${articleId}`)
+            const responseOfFetch = await fetch(`https://we-make-team.click/api/articles/${articleId}`)
             const responseToJson = await responseOfFetch.json()
             setArticle(responseToJson.data)
         })()
@@ -57,7 +57,7 @@ function PostEditPage(){
             formData.append("numOfMember", JSON.stringify(numOfMember))
             formData.append("text", JSON.stringify(text))
         }
-        const editArticlesResponse = await fetch(`https://https.we-make-team.click/api/articles/${articleId}`, {
+        const editArticlesResponse = await fetch(`https://we-make-team.click/api/articles/${articleId}`, {
             method : "PUT",
             headers : {
                 Authorization : `Barer ${token}`

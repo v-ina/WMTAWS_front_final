@@ -67,9 +67,9 @@ function PostEditPage(){
 
         let forumCategory = ''
         {categoryId === 1 && (forumCategory = 'dev')}
-        {categoryId === 2 && (forumCategory = 'sport')}
-        {categoryId === 3 && (forumCategory = 'game')}
-        {categoryId === 4 && (forumCategory = 'student')}
+        {categoryId === 2 && (forumCategory = 'student')}
+        {categoryId === 3 && (forumCategory = 'sport')}
+        {categoryId === 4 && (forumCategory = 'game')}
         if(editArticlesResponse.status === 200 || editArticlesResponse.status ===204 ) {
             setMessage('Articles cree!')
             navigate(`/forum/${forumCategory}`)
@@ -94,9 +94,9 @@ function PostEditPage(){
                             <select name="categoryId" id="forumtype" defaultValue={article.categoryId}>
                                 <option value="">select...</option>
                                 <option value="1">dev</option>
-                                <option value="4">student</option>
-                                <option value="2">sport</option>
-                                <option value="3">game</option>
+                                <option value="2">student</option>
+                                <option value="3">sport</option>
+                                <option value="4">game</option>
                             </select>
                         </label>
                     </div>
@@ -118,7 +118,7 @@ function PostEditPage(){
                         </label>
                     </div>
                 </div>
-                <textarea name="text" id="" cols="30" rows="10" placeholder="write here description on your project" defaultValue={article.text.substr(1,article.text.length-2)}></textarea>
+                <textarea name="text" id="" cols="30" rows="10" placeholder="write here description on your project"  defaultValue={article.text.substr(1, article.text.length-2).replaceAll('\\n', '\n')}></textarea>
                 <label for="file">uploade file or image : (*max : 3fiiles, only pdf, jpg, jpeg, png)</label>
                 <input type="file" id="file" accept=".pdf, .jpg, .jpeg, .png" class="creatpost__file" name='attachment' multiple/>
                 <input type="submit" class="createpost__btn" /> 
